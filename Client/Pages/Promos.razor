@@ -4,7 +4,7 @@
 
 @code {
     // Sample data with 4 columns for the main table
-    var tableData = new List<string[]>
+    public List<string[]> tableData = new List<string[]>
     {
         new[] { "Row 1", "Data 1", "Info 1", "Detail 1" },
         new[] { "Row 2", "Data 2", "Info 2", "Detail 2" },
@@ -13,7 +13,7 @@
     };
 
     // Sample nested table data for each row
-    var nestedTableData = new List<string[]>
+    public List<string[]> nestedTableData = new List<string[]>
     {
         new[] { "Nested 1A", "Nested 1B" },
         new[] { "Nested 2A", "Nested 2B" },
@@ -62,6 +62,10 @@
 </script>
 
 <style>
+    html {
+        overflow-y: scroll;
+    }
+
     .table-container {
         display: flex;
         flex-direction: column;
