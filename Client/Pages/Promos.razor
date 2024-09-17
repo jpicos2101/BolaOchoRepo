@@ -1,7 +1,111 @@
 ﻿@page "/promos"
 
-<h3>Promos</h3>
+@{
+    // Sample data with 4 columns for the main table
+    var tableData = new List<string[]>
+    {
+        new[] { "Row 1", "Data 1", "Info 1", "Detail 1" },
+        new[] { "Row 2", "Data 2", "Info 2", "Detail 2" },
+        new[] { "Row 3", "Data 3", "Info 3", "Detail 3" }
+    };
 
-@code {
-
+    // Sample nested table data for each row
+    var nestedTableData = new List<string[]>
+    {
+        new[] { "Nested 1A", "Nested 1B" },
+        new[] { "Nested 2A", "Nested 2B" },
+        new[] { "Nested 3A", "Nested 3B" }
+    };
 }
+
+<div class="table-container">
+    @for (int i = 0; i < tableData.Count; i++)
+    {
+        <div class="table-row" id="row-@i">
+            <div class="table-cell">@tableData[i][0]</div>
+            <div class="table-cell">@tableData[i][1]</div>
+            <div class="table-cell">@tableData[i][2]</div>
+            <div class="table-cell">@tableData[i][3]</div>
+            <button class="toggle-btn" onclick="toggleRow('row-content-@i')">Toggle</button>
+        </div>
+
+        <div class="row-content" id="row-content-@i" style="display: none;">
+            <div class="nested-table">
+                <div class="table-header">
+                    <div class="table-cell">Nested Column 1</div>
+                    <div class="table-cell">Nested Column 2</div>
+                </div>
+                @for (int j = 0; j < nestedTableData.Count; j++)
+                {
+                    <div class="nested-table-row">
+                        <div class="table-cell">@nestedTableData[j][0]</div>
+                        <div class="table-cell">@nestedTableData[j][1]</div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+<script>
+    function toggleRow(contentId) {
+        var contentDiv = document.getElementById(contentId);
+        if (contentDiv.style.display === "none") {
+            contentDiv.style.display = "block";
+        } else {
+            contentDiv.style.display = "none";
+        }
+    }
+</script>
+
+<style>
+    .table-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .table-row {
+        display: flex;
+        justify-content: space-between;
+        background-color: #f2f2f2;
+        padding: 10px;
+        margin-bottom: 5px;
+    }
+
+    .row-content {
+        background-color: #e9e9e9;
+        padding: 10px;
+        margin-bottom: 5px;
+    }
+
+    .table-cell {
+        flex: 1;
+        padding: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .toggle-btn {
+        margin-left: 10px;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    .nested-table {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+    }
+
+    .nested-table-row, .table-header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .table-header {
+        background-color: #dcdcdc;
+        padding: 5px;
+        margin-bottom: 5px;
+    }
+</style>
