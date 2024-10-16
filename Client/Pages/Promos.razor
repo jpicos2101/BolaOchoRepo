@@ -1,184 +1,55 @@
 ﻿@page "/promos"
 
-<h3>Promos</h3>
-
 @code {
-    // NestedTable class definition
-    public class NestedTable
-    {
-        public required string[] ColumnNames { get; set; }
-        public required List<string[]> Rows { get; set; }
-    }
 
-    // Sample data with 4 columns for the main table
     public List<string[]> tableData = new List<string[]>
     {
-        new[] { "Dúo de Botanas y Juegos" },
-        new[] { "Bebida y Botana" },
-        new[] { "Fiesta Completa" },
-        new[] { "Alitas y Juegos" },
-        new[] { "Botanas y Billar" },
-        new[] { "Fiesta Completa" }
-    };
-
-    // Sample nested table data for each row
-    public Dictionary<int, NestedTable> nestedTableData = new Dictionary<int, NestedTable>
-    {
-        { 0, new NestedTable 
-            { 
-                ColumnNames = new[] { "Que contiene / Martes a Jueves de 4pm a 7pm" },
-                Rows = new List<string[]> 
-                { 
-                    new[] { "1 orden de papas a la francesa (300g)" }, 
-                    new[] { "1 orden de salchipulpos" }, 
-                    new[] { "1 hora de billar"},
-                    new[] { "**Costo total sin promoción:** 235 pesos"},
-                    new[] { "**Costo de la promoción:** 210 pesos"}
-
-                }
-            } 
-        },
-        { 1, new NestedTable 
-            { 
-                ColumnNames = new[] { "Que contiene / Martes a Jueves de 4pm a 7pm" },
-                Rows = new List<string[]> 
-                { 
-                    new[] { "1 cubeta de cerveza (10 botellas de Indio, Tecate, XX Lager o XX Ámbar)" }, 
-                    new[] { "1 orden de aros de cebolla" },
-                    new[] { "**Costo total sin promoción:** 375 pesos" },
-                    new[] { "**Costo de la promoción:** 350 pesos" }
-
-                }
-            } 
-        },
-        { 2, new NestedTable 
-            { 
-                ColumnNames = new[] { "Que contiene / Martes a Domingo / 2 promos por mesa" },
-                Rows = new List<string[]> 
-                { 
-                    new[] { "1 cubeta de cerveza (10 botellas de Corona, Pacifico, Victoria)"},
-                    new[] { "2 horas de billar"},
-                    new[] { "1 orden de dedos de queso"},
-                    new[] { "1 orden de papas doradas preparadas"},
-                    new[] { "**Costo total sin promoción:** 704 pesos"},
-                    new[] { "**Costo de la promoción:** 650 pesos"}
-
-                }
-            } 
-        },
-        { 3, new NestedTable 
-            { 
-                ColumnNames = new[] { "Que contiene / Martes a Domingo / 2 promos por mesa" },
-                Rows = new List<string[]> 
-                { 
-                    new[] { "1 orden de alitas (10 piezas) con salsa a elegir"},
-                    new[] { "1 cubeta de cerveza (10 botellas de Indio, Tecate, XX Lager o XX Ámbar)"},
-                    new[] { "1 hora de billar"},
-                    new[] { "**Costo total sin promoción:** 559 pesos"},
-                    new[] { "**Costo de la promoción:** 500 pesos"}
-                }
-            } 
-        },
-        { 4, new NestedTable 
-            { 
-                ColumnNames = new[] { "Que contiene / Martes a Domingo / 2 promos por mesa" },
-                Rows = new List<string[]> 
-                { 
-                    new[] { "1 orden de boneless (300g) con salsa a elegir" },
-                    new[] { "1 orden de papas gajo (300g)" },
-                    new[] { "1 orden de salchicha botanera" },
-                    new[] { "1 hora de billar" },
-                    new[] { "**Costo total sin promoción:** 409 pesos" },
-                    new[] { "**Costo de la promoción:** 370 pesos" }
-                }
-            } 
-        },
-        { 5, new NestedTable 
-            { 
-                ColumnNames = new[] { "Que contiene / Martes a Domingo / 2 promos por mesa" },
-                Rows = new List<string[]> 
-                { 
-                    new[] { "2 cubetas de cerveza (20 botellas de Indio, Tecate, XX Lager o XX Ámbar)" },
-                    new[] { "2 horas de billar" },
-                    new[] { "1 orden de tenders (300g) con salsa a elegir" },
-                    new[] { "1 orden de dedos de queso" },
-                    new[] { "1 orden de papas doradas preparadas" },
-                    new[] { "**Costo total sin promoción:** 1093 pesos" },
-                    new[] { "**Costo de la promoción:** 984 pesos" }
-                }
-            } 
-        },
-        { 6, new NestedTable 
-            { 
-                ColumnNames = new[] { "Que contiene / Martes a Jueves de 4 a 7" },
-                Rows = new List<string[]> 
-                { 
-                    new[] { "2 micheladas (A elegir)" },
-                    new[] { "1 orden de boneless (300g) con salsa a elegir" },
-                    new[] { "1 orden de papas a la francesa (300g) con queso" },
-                    new[] { "1 hora de billar" },
-                    new[] { "**Costo total sin promoción:** 499 pesos" },
-                    new[] { "**Costo de la promoción:** 950 pesos" }
-
-                }
-            } 
-        }
-        
-        
-        // Add more entries as needed
+        new[] { "Alitas y Juegos","1.- Alitas y juegos.png" },
+        new[] { "Bebida y Botana","2.- Bebida y botana.png" },
+        new[] { "Botanas y Billar","3.- Botanas y billar.png" },
+        new[] { "Fiesta Completa","4.- Fiesta completa.png" },
+        new[] { "La Bola 8","5.- La bola 8.png" },
+        new[] { "Michelada y Botanas","6.- Michelada y botanas.png" }
     };
 }
 
-<div class="table-container">
+<div class="table-container" style="width:90%; margin: auto;">
     @for (int i = 0; i < tableData.Count; i++)
     {
-        <div class="table-row" id="row-@i">
+        <div class="table-row" id="row-@i" onclick="toggleRow('row-content-@i')" style="cursor: pointer;">
+            <img src="icons/8_ball.png" alt="icon" />
             <div class="table-cell">@tableData[i][0]</div>
-            <button class="toggle-btn" onclick="toggleRow('row-content-@i')">
-                <img src="icons/8_ball.png" alt="MostrarPromo" />
-            </button>
+            <img src="icons/8_ball.png" alt="icon" />
         </div>
 
         <div class="row-content" id="row-content-@i" style="display: none;">
-            <div class="nested-table">
-                <div class="table-header">
-                    @if (nestedTableData.ContainsKey(i))
-                    {
-                        @foreach (var colName in nestedTableData[i].ColumnNames)
-                        {
-                            <div class="table-cell">@colName</div>
-                        }
-                    }
-                </div>
-                @if (nestedTableData.ContainsKey(i))
-                {
-                    @for (int j = 0; j < nestedTableData[i].Rows.Count; j++)
-                    {
-                        <div class="nested-table-row">
-                            @for (int k = 0; k < nestedTableData[i].ColumnNames.Length; k++)
-                            {
-                                <div class="table-cell">@nestedTableData[i].Rows[j][k]</div>
-                            }
-                        </div>
-                    }
-                }
+            <div class="imgbox">
+                <img class="center-fit" src="promos/@tableData[i][1]" />
             </div>
         </div>
     }
 </div>
 
 <script>
+
     function toggleRow(contentId) {
-        var contentDiv = document.getElementById(contentId);
-        if (contentDiv.style.display === "none") {
-            contentDiv.style.display = "block";
-        } else {
-            contentDiv.style.display = "none";
-        }
-    }
+
+        $('#' + contentId).toggle('slow');
+    };
 </script>
 
 <style>
+    .imgbox {
+        display: grid;
+        height: 100%;
+    }
+
+    .center-fit {
+        max-width: 100%;
+        max-height: 100vh;
+        margin: auto;
+    }
+
     html {
         overflow-y: scroll;
     }
@@ -202,42 +73,23 @@
         margin-bottom: 5px;
     }
 
-    .table-cell {
-        flex: 1;
-        padding: 5px;
-        border: 1px solid #ccc;
-    }
-
     .toggle-btn {
         margin-left: 10px;
         padding: 0;
         border: none;
         background: transparent;
         cursor: pointer;
+        transition: height 4s;
     }
 
-    .toggle-btn img {
-        width: 24px; /* Adjust size as needed */
-        height: 24px; /* Adjust size as needed */
-    }
-
-    .nested-table {
-        display: flex;
-        flex-direction: column;
-        padding: 10px;
-        border: 1px solid #ccc;
-        background-color: #fff;
-    }
-
-    .nested-table-row, .table-header {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .table-header {
-        background-color: #dcdcdc;
-        padding: 5px;
-        margin-bottom: 5px;
-    }
-    /*  test for commit */
+    /*
+        .table-cell {
+            flex: 1;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+            .toggle-btn img {
+                width: 24px;
+                height: 24px;
+            } */
 </style>
