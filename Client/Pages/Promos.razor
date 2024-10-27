@@ -1,6 +1,9 @@
 ﻿@page "/promos"
 
 @code {
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public bool showBack { get; set; } = false;
 
     public List<string[]> tableData = new List<string[]>
     {
@@ -28,6 +31,11 @@
             </div>
         </div>
     }
+
+    @if (showBack)
+    {
+        <a href="/bikers">Promo Senderos</a>
+    } 
 </div>
 
 <script>
@@ -81,15 +89,4 @@
         cursor: pointer;
         transition: height 4s;
     }
-
-    /*
-        .table-cell {
-            flex: 1;
-            padding: 5px;
-            border: 1px solid #ccc;
-        }
-            .toggle-btn img {
-                width: 24px;
-                height: 24px;
-            } */
 </style>

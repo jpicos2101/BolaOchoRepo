@@ -1,0 +1,49 @@
+﻿@page "/menu"
+
+@code {
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public bool showBack { get; set; } = false;
+}
+
+<script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<div style="height:50%; width:50%; margin:auto;">
+    <div id="carouselMenu" class="carousel slide" data-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselMenu" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Pagina 1"></button>
+            <button type="button" data-bs-target="#carouselMenu" data-bs-slide-to="1" aria-label="Pagina 2"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="menu/menu first page.png" class="d-block w-100" alt="1">
+            </div>
+            <div class="carousel-item">
+                <img src="menu/menu second page.png" class="d-block w-100" alt="2">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselMenu" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselMenu" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <br />
+    @if (showBack)
+    {
+        <a href="/bikers">Promo Senderos</a>
+    }
+    <br />
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var myCarousel = document.querySelector('#carouselMenu');
+        var carousel = new bootstrap.Carousel(myCarousel);
+    });
+</script>
