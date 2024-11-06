@@ -1,16 +1,13 @@
 ﻿@page "/menu"
 
 @code {
-    [Parameter]
-    [SupplyParameterFromQuery]
-    public bool showBack { get; set; } = false;
+    
 }
 
 <style type="text/css">
 
     @@media (min-width: 800px) {
         .resizeImg {
-
             height: 50%;
             width: 50%;
         }
@@ -22,11 +19,9 @@
 
 </style>
 
-<script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
-
 <div style="margin:auto;" class="resizeImg">
     <div id="carouselMenu" class="carousel slide" data-ride="carousel">
-        <div class="carousel-indicators">
+        <div class="carousel-indicators" style="padding-bottom: 15px;">
             <button type="button" data-bs-target="#carouselMenu" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Pagina 1"></button>
             <button type="button" data-bs-target="#carouselMenu" data-bs-slide-to="1" aria-label="Pagina 2"></button>
         </div>
@@ -46,13 +41,10 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
+        <div style="background-color: #6D5E5B; text-align: center; margin-top: -1px;">
+            <a style="color: #ED7C2F; font-weight: bold; padding-top:10px;" href="/promos">Nuestras Promos</a>
+        </div>
     </div>
-    <br />
-    @if (showBack)
-    {
-        <a href="/bikers">Promo Senderos</a>
-    }
-    <br>
 </div>
 
 <script type="text/javascript">

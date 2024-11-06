@@ -1,92 +1,72 @@
 ﻿@page "/promos"
 
 @code {
-    [Parameter]
-    [SupplyParameterFromQuery]
-    public bool showBack { get; set; } = false;
 
-    public List<string[]> tableData = new List<string[]>
-    {
-        new[] { "Alitas y Juegos","1.- Alitas y juegos.png" },
-        new[] { "Bebida y Botana","2.- Bebida y botana.png" },
-        new[] { "Botanas y Billar","3.- Botanas y billar.png" },
-        new[] { "Fiesta Completa","4.- Fiesta completa.png" },
-        new[] { "La Bola 8","5.- La bola 8.png" },
-        new[] { "Michelada y Botanas","6.- Michelada y botanas.png" }
-    };
 }
+<style type="text/css">
 
-<div class="table-container" style="width:90%; margin: auto;">
-    @for (int i = 0; i < tableData.Count; i++)
-    {
-        <div class="table-row" id="row-@i" onclick="toggleRow('row-content-@i')" style="cursor: pointer;">
-            <img src="icons/8_ball.png" alt="icon" />
-            <div class="table-cell">@tableData[i][0]</div>
-            <img src="icons/8_ball.png" alt="icon" />
+    @@media (min-width: 800px) {
+        .resizeImg {
+            height: 50%;
+            width: 50%;
+        }
+    }
+
+    .carousel.pointer-event {
+        touch-action: pan-y pinch-zoom;
+    }
+
+</style>
+
+<div style="margin:auto;" class="resizeImg">
+    <div id="carouselMenu" class="carousel slide" data-ride="carousel">
+        <div class="carousel-indicators" style="padding-bottom: 15px;">
+            <button type="button" data-bs-target="#carouselMenu" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Pagina 1"></button>
+            <button type="button" data-bs-target="#carouselMenu" data-bs-slide-to="1" aria-label="Pagina 2"></button>
+            <button type="button" data-bs-target="#carouselMenu" data-bs-slide-to="2" aria-label="Pagina 3"></button>
+            <button type="button" data-bs-target="#carouselMenu" data-bs-slide-to="3" aria-label="Pagina 4"></button>
+            <button type="button" data-bs-target="#carouselMenu" data-bs-slide-to="4" aria-label="Pagina 5"></button>
+            <button type="button" data-bs-target="#carouselMenu" data-bs-slide-to="5" aria-label="Pagina 6"></button>
         </div>
-
-        <div class="row-content" id="row-content-@i" style="display: none;">
-            <div class="imgbox">
-                <img class="center-fit" src="promos/@tableData[i][1]" />
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="promos/1.- Alitas y juegos.png" class="d-block w-100" alt="1">
+            </div>
+            <div class="carousel-item">
+                <img src="promos/2.- Bebida y botana.png" class="d-block w-100" alt="2">
+            </div>
+            <div class="carousel-item">
+                <img src="promos/3.- Botanas y billar.png" class="d-block w-100" alt="3">
+            </div>
+            <div class="carousel-item">
+                <img src="promos/4.- Fiesta completa.png" class="d-block w-100" alt="4">
+            </div>
+            <div class="carousel-item">
+                <img src="promos/5.- La bola 8.png" class="d-block w-100" alt="5">
+            </div>
+            <div class="carousel-item">
+                <img src="promos/6.- Michelada y botanas.png" class="d-block w-100" alt="6">
             </div>
         </div>
-    }
-
-    @if (showBack)
-    {
-        <a href="/bikers">Promo Senderos</a>
-    } 
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselMenu" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselMenu" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+        <div style="background-color: #6D5E5B; text-align: center; margin-top: -1px;">
+            <a style="color: #ED7C2F; font-weight: bold; padding-top:10px;" href="/menu">Nuestro Menu</a>
+        </div>
+    </div>
 </div>
 
-<script>
+<script type="text/javascript">
 
-    function toggleRow(contentId) {
+    $(document).ready(function () {
 
-        $('#' + contentId).toggle('slow');
-    };
+        var myCarousel = document.querySelector('#carouselMenu');
+        var carousel = new bootstrap.Carousel(myCarousel);
+    });
 </script>
-
-<style>
-    .imgbox {
-        display: grid;
-        height: 100%;
-    }
-
-    .center-fit {
-        max-width: 100%;
-        max-height: 100vh;
-        margin: auto;
-    }
-
-    html {
-        overflow-y: scroll;
-    }
-
-    .table-container {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .table-row {
-        display: flex;
-        justify-content: space-between;
-        background-color: #f2f2f2;
-        padding: 10px;
-        margin-bottom: 5px;
-    }
-
-    .row-content {
-        background-color: #e9e9e9;
-        padding: 10px;
-        margin-bottom: 5px;
-    }
-
-    .toggle-btn {
-        margin-left: 10px;
-        padding: 0;
-        border: none;
-        background: transparent;
-        cursor: pointer;
-        transition: height 4s;
-    }
-</style>
