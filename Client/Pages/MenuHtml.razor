@@ -1,278 +1,291 @@
 ﻿@page "/menuhtml"
+@using System.Text
 
 @code {
-   
+    [Parameter]
+    public string FormattedHtml { get; set; } = string.Empty;
+
+    public class MenuContent
+    {
+        public required List<Category> LstCategories { get; set; }
+    }
+
+    public class Category
+    {
+        public required string Name { get; set; }
+
+        public required List<Product> LstProducts { get; set; }
+    }
+
+    public class Product
+    {
+        public required string Name { get; set; }
+
+        public string Portion { get; set; } = string.Empty;
+
+        public string Description { get; set; } = string.Empty;
+
+        public required string PhotoPath { get; set; }
+    }
+
+    protected override void OnInitialized()
+    {
+        var MenuObj = new MenuContent()
+        {
+            LstCategories = new List<Category>()
+            {
+                new Category()
+                {
+                    Name = "Comida",
+                    LstProducts = new List<Product>()
+                    {
+                        new Product()
+                        {
+                            Name = "Alitas",
+                            Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
+                            Portion = "(700gr)",
+                            PhotoPath = ""
+                        },
+                        new Product()
+                        {
+                            Name = "Boneless",
+                            Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
+                            Portion = "(700gr)",
+                            PhotoPath = ""
+                        },
+                        new Product()
+                        {
+                            Name = "Tenders",
+                            Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
+                            Portion = "(700gr)",
+                            PhotoPath = ""
+                        },
+                        new Product()
+                        {
+                            Name = "Hamburguesa de Pollo",
+                            Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
+                            Portion = "(700gr)",
+                            PhotoPath = ""
+                        },
+                        new Product()
+                        {
+                            Name = "Hamburguesa de Res",
+                            Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
+                            Portion = "(700gr)",
+                            PhotoPath = ""
+                        },
+                        new Product()
+                        {
+                            Name = "Dedos de queso",
+                            Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
+                            Portion = "(700gr)",
+                            PhotoPath = ""
+                        },
+                        new Product()
+                        {
+                            Name = "Papas a la francesa",
+                            Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
+                            Portion = "(700gr)",
+                            PhotoPath = ""
+                        },
+                        new Product()
+                        {
+                            Name = "Tiras de camote",
+                            Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
+                            Portion = "(700gr)",
+                            PhotoPath = ""
+                        }
+                    }
+                },
+                new Category()
+                {
+                    Name = "Bebidas",
+                    LstProducts = new List<Product>()
+                    {
+                        new Product()
+                        {
+                            Name = "TKT Light",
+                            Description = "",
+                            Portion = "",
+                            PhotoPath = "../products/drinks/tkt_light.png"
+                        },
+                        new Product()
+                        {
+                            Name = "TKT Roja",
+                            Description = "",
+                            Portion = "",
+                            PhotoPath = ""
+                        },
+                        new Product()
+                        {
+                            Name = "Pacifico",
+                            Description = "",
+                            Portion = "",
+                            PhotoPath = ""
+                        },
+                        new Product()
+                        {
+                            Name = "Corona",
+                            Description = "",
+                            Portion = "",
+                            PhotoPath = ""
+                        },
+                        new Product()
+                        {
+                            Name = "Victoria",
+                            Description = "",
+                            Portion = "",
+                            PhotoPath = ""
+                        },
+                        new Product()
+                        {
+                            Name = "Boheima Clara",
+                            Description = "",
+                            Portion = "",
+                            PhotoPath = "../products/drinks/bohemia_clara.png"
+                        },
+                        new Product()
+                        {
+                            Name = "Bohemia Cristal",
+                            Description = "",
+                            Portion = "",
+                            PhotoPath = "../products/drinks/bohemia_cristal.png"
+                        },
+                        new Product()
+                        {
+                            Name = "Bohemia Weizen",
+                            Description = "",
+                            Portion = "",
+                            PhotoPath = "../products/drinks/bohemia_weizen.png"
+                        },
+                        new Product()
+                        {
+                            Name = "Indio",
+                            Description = "",
+                            Portion = "",
+                            PhotoPath = "../products/drinks/indio.png"
+                        },
+                        new Product()
+                        {
+                            Name = "XX Ambar",
+                            Description = "",
+                            Portion = "",
+                            PhotoPath = "../products/drinks/xx_ambar.png"
+                        },
+                        new Product()
+                        {
+                            Name = "XX Lager",
+                            Description = "",
+                            Portion = "",
+                            PhotoPath = "../products/drinks/xx_lager.png"
+                        },
+                    }
+                }
+            }
+        };
+
+        var strBuilder = new StringBuilder();
+
+        foreach (var category in MenuObj.LstCategories)
+        {
+            strBuilder.Append($"<br/><br/>");
+            strBuilder.Append($"<div>");
+            strBuilder.Append($"<h1>{category.Name}</h1>");
+
+            var counter = 1;
+            var isRowCompleted = false;
+            foreach (var product in category.LstProducts)
+            {
+                if (counter == 3)
+                {
+                    counter = 1;
+                    isRowCompleted = false;
+                }
+
+                if (counter == 1)
+                    strBuilder.Append("<div class='box'>");
+
+
+                var imgSrc = "";
+                if(product.PhotoPath != "")
+                {
+                    imgSrc = $"src='{product.PhotoPath}'";
+                } 
+                else
+                {
+                    imgSrc = $"data-src='holder.js/167x120'";
+                }
+
+                strBuilder.Append(
+                            $@"<div class='part-{counter}'>
+                            <div class='row'>
+                                <div class='col-7 order-2'>
+                                    <h2>{product.Name}<span class='text-muted'>{product.Portion}</span></h2>
+                                    <p class='lead'>{product.Description}</p>
+                                </div>
+                                <div class='col-5 order-1'>
+                                    <img class='img-thumbnail'
+                                         {imgSrc}
+                                         alt='167x120'
+                                         style='width: 167px; height: 120px;'
+                                         data-holder-rendered='true'>
+                                </div>
+                            </div>
+                        </div>");
+
+                if (counter == 2)
+                {
+                    strBuilder.Append("</div>");
+                    strBuilder.Append("<hr>");
+                    isRowCompleted = true;
+                }
+
+                counter++;
+            }
+
+            if (!isRowCompleted)
+            {
+                strBuilder.Append(
+                            $@"<div class='part-2'>
+                            <div class='row'>
+                                <div class='col-7 order-2'>
+                                </div>
+                                <div class='col-5 order-1'>
+                                </div>
+                            </div>
+                        </div>");
+            }
+
+            strBuilder.Append($"</div>");
+        }
+
+        FormattedHtml = strBuilder.ToString();
+    }
 }
 
-<div class="container" style="margin: auto; background-color: #F6F1EE;">
-    <h3 style="text-align: center;">Senderos Bikers Halloween Party</h3>
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="row">
-                <div class="col-sm-1">
-                    <div style="background-color:#6C5F5B; border-radius:90px 0px 0px 0px;">
-                        &nbsp;
-                    </div>
-                </div>
-                <div class="col-sm-10" style="text-align: center;">
-                    MENÚ
-                </div>
-                <div class="col-sm-1">
-                    <div style="background-color:#6C5F5B; border-radius:0px 90px 0px 0px;">
-                        &nbsp;
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        body .....
-    </div>
-    <div class="row">
-        <div class="col-md-1" style="background-color:#6C5F5B;">
-            1
-        </div>
-        <div class="col-md-10">
-            10
-        </div>
-        <div class="col-md-1" style="background-color:#6C5F5B;">
-            1
-        </div>
-    </div>
-</div>
+<style type="text/css">
+    .box {
+        display: flex;
+        justify-content: center;
+        flex-flow: row nowrap;
+    }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Template</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .menu-item {
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 5px;
-            background-color: #f9f9f9;
+    .part-1, .part-2 {
+        flex: 0 0 50%;
+    }
+
+
+    @@media screen and (max-width:1000px) {
+        .box {
+            flex-flow: column nowrap;
         }
+    }
+</style>
 
-        .menu-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
+<script src="/vendors/holderjs/js/holder.js"></script>
 
-        .menu-description {
-            font-size: 1rem;
-            margin-top: 10px;
-        }
-    </style>
-</head>
-<body>
+    @((MarkupString)FormattedHtml)
 
-    <div class="container mt-5">
-        <h1 class="text-center">Menu</h1>
-        <div class="row">
+<script type="text/javascript">
 
-            <div class="col-md-4">
-                <div class="menu-item">
-                    <div class="menu-title">Dish 1</div>
-                    <div class="menu-description">Description of Dish 1. Ingredients and more information about the dish.</div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="menu-item">
-                    <div class="menu-title">Dish 2</div>
-                    <div class="menu-description">Description of Dish 2. Ingredients and more information about the dish.</div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="menu-item">
-                    <div class="menu-title">Dish 3</div>
-                    <div class="menu-description">Description of Dish 3. Ingredients and more information about the dish.</div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="menu-item">
-                    <div class="menu-title">Dish 4</div>
-                    <div class="menu-description">Description of Dish 4. Ingredients and more information about the dish.</div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="menu-item">
-                    <div class="menu-title">Dish 5</div>
-                    <div class="menu-description">Description of Dish 5. Ingredients and more information about the dish.</div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="menu-item">
-                    <div class="menu-title">Dish 6</div>
-                    <div class="menu-description">Description of Dish 6. Ingredients and more information about the dish.</div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    @* <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script> *@
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bola8 Menu</title>
-    <style>
-        /* Colors and Fonts */
-        :root {
-            --background-color: #f9f4ee; /* Light beige */
-            --primary-color: #b22222; /* Deep red */
-            --text-color: #333333; /* Dark gray for text */
-            --highlight-color: #ffa726; /* Accent orange */
-            --border-color: #d3a96f; /* Subtle tan for dividers */
-            --header-font: 'Arial Black', sans-serif;
-            --body-font: 'Arial', sans-serif;
-        }
-
-        body {
-            background-color: var(--background-color);
-            color: var(--text-color);
-            font-family: var(--body-font);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 700px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            padding: 25px;
-        }
-
-        h1, h2 {
-            color: var(--primary-color);
-            font-family: var(--header-font);
-            text-align: center;
-            text-transform: uppercase;
-            margin: 10px 0;
-        }
-
-        h1 {
-            font-size: 2em;
-            letter-spacing: 2px;
-        }
-
-        h2 {
-            font-size: 1.5em;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 5px;
-        }
-
-        .menu-section {
-            margin: 20px 0;
-        }
-
-        .menu-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 1.1em;
-        }
-
-            .menu-item span:first-child {
-                font-weight: bold;
-                color: var(--text-color);
-            }
-
-        .price {
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-
-        .social-media, .location {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 1.1em;
-            color: var(--highlight-color);
-        }
-
-            .social-media p, .location p {
-                margin: 5px 0;
-            }
-
-        footer {
-            text-align: center;
-            padding-top: 20px;
-            font-size: 0.85em;
-            color: #777;
-            margin-top: 30px;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <h1>Bola8 - Menú</h1>
-
-        <div class="menu-section">
-            <h2>Botanas y Entradas</h2>
-            <div class="menu-item"><span>Papas Doradas Preparadas (300gr)</span> <span class="price">$55</span></div>
-            <div class="menu-item"><span>Papas a la francesa (300gr)</span> <span class="price">$75</span></div>
-            <div class="menu-item"><span>Dedos de queso (6 piezas)</span> <span class="price">$120</span></div>
-            <div class="menu-item"><span>Alitas (700gr)</span> <span class="price">$179</span></div>
-            <!-- Add additional items here -->
-        </div>
-
-        <div class="menu-section">
-            <h2>Bebidas</h2>
-            <div class="menu-item"><span>Indio</span> <span class="price">$35</span></div>
-            <div class="menu-item"><span>Tecate Light</span> <span class="price">$35</span></div>
-            <div class="menu-item"><span>Heineken</span> <span class="price">$40</span></div>
-            <div class="menu-item"><span>Tempus Doble Malta</span> <span class="price">$60</span></div>
-            <!-- Add additional items here -->
-        </div>
-
-        <div class="menu-section">
-            <h2>Micheladas</h2>
-            <div class="menu-item"><span>Rusa (cerveza, sal y limón)</span> <span class="price">$75</span></div>
-            <div class="menu-item"><span>Clamato (cerveza, clamato, sal, limón y tajín)</span> <span class="price">$75</span></div>
-        </div>
-
-        <div class="menu-section">
-            <h2>Otros</h2>
-            <div class="menu-item"><span>New Mix</span> <span class="price">$40</span></div>
-            <div class="menu-item"><span>Limonada o Naranjada</span> <span class="price">$35</span></div>
-        </div>
-
-        <div class="social-media">
-            <p><strong>¡Síguenos en redes sociales!</strong></p>
-        </div>
-
-        <div class="location">
-            <p>López Mateos Sur 5061, La Calma, 45070 Zapopan, Jal.</p>
-        </div>
-
-        <footer>
-            <p>&copy; 2024 Bola8 Pool Club</p>
-        </footer>
-    </div>
-
-</body>
-</html>
-
-
-
+</script>
