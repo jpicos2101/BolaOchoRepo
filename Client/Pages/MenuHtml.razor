@@ -7,245 +7,519 @@
 
     public class MenuContent
     {
-        public required List<Category> LstCategories { get; set; }
+        public required List<Food> LstFoods { get; set; }
+        public required List<Soda> LstSodas { get; set; }
+        public required List<Beer> LstBeers { get; set; }
+        public required List<Spirit> LstSpirits { get; set; }
     }
 
-    public class Category
+    public class Item
     {
         public required string Name { get; set; }
 
-        public required List<Product> LstProducts { get; set; }
-    }
-
-    public class Product
-    {
-        public required string Name { get; set; }
-
-        public string Portion { get; set; } = string.Empty;
-
-        public string Description { get; set; } = string.Empty;
+        public required string Description { get; set; }
 
         public required string PhotoPath { get; set; }
+
+        public required decimal Price { get; set; }
+    }
+
+    public class Food : Item
+    {
+        public string Portion { get; set; } = string.Empty;
+    }
+
+    public class Drink : Item
+    {
+        public int Capacity { get; set; } = 0;
+
+        public string Paring { get; set; } = string.Empty;
+    }
+
+    public class Soda : Drink
+    {
+
+    }
+
+    public class Beer : Drink
+    {
+        public bool IsCraftBeer { get; set; } = false;
+    }
+
+    public class Spirit : Drink
+    {
+        public bool SellingBottle { get; set; } = false;
     }
 
     protected override void OnInitialized()
     {
-        var MenuObj = new MenuContent()
-        {
-            LstCategories = new List<Category>()
+        var menuContent = new MenuContent()
             {
-                new Category()
+                LstFoods = new List<Food>()
+            {
+                new Food()
                 {
-                    Name = "Comida",
-                    LstProducts = new List<Product>()
-                    {
-                        new Product()
-                        {
-                            Name = "Alitas",
-                            Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
-                            Portion = "(700gr)",
-                            PhotoPath = ""
-                        },
-                        new Product()
-                        {
-                            Name = "Boneless",
-                            Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
-                            Portion = "(700gr)",
-                            PhotoPath = ""
-                        },
-                        new Product()
-                        {
-                            Name = "Tenders",
-                            Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
-                            Portion = "(700gr)",
-                            PhotoPath = ""
-                        },
-                        new Product()
-                        {
-                            Name = "Hamburguesa de Pollo",
-                            Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
-                            Portion = "(700gr)",
-                            PhotoPath = ""
-                        },
-                        new Product()
-                        {
-                            Name = "Hamburguesa de Res",
-                            Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
-                            Portion = "(700gr)",
-                            PhotoPath = ""
-                        },
-                        new Product()
-                        {
-                            Name = "Dedos de queso",
-                            Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
-                            Portion = "(700gr)",
-                            PhotoPath = ""
-                        },
-                        new Product()
-                        {
-                            Name = "Papas a la francesa",
-                            Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
-                            Portion = "(700gr)",
-                            PhotoPath = ""
-                        },
-                        new Product()
-                        {
-                            Name = "Tiras de camote",
-                            Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
-                            Portion = "(700gr)",
-                            PhotoPath = ""
-                        }
-                    }
+                    Name = "Alitas",
+                    Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
+                    Portion = "350/700",
+                    PhotoPath = "",
+                    Price = 1.15M
                 },
-                new Category()
+                new Food()
                 {
-                    Name = "Bebidas",
-                    LstProducts = new List<Product>()
-                    {
-                        new Product()
-                        {
-                            Name = "TKT Light",
-                            Description = "",
-                            Portion = "",
-                            PhotoPath = "../products/drinks/tkt_light.png"
-                        },
-                        new Product()
-                        {
-                            Name = "TKT Roja",
-                            Description = "",
-                            Portion = "",
-                            PhotoPath = ""
-                        },
-                        new Product()
-                        {
-                            Name = "Pacifico",
-                            Description = "",
-                            Portion = "",
-                            PhotoPath = ""
-                        },
-                        new Product()
-                        {
-                            Name = "Corona",
-                            Description = "",
-                            Portion = "",
-                            PhotoPath = ""
-                        },
-                        new Product()
-                        {
-                            Name = "Victoria",
-                            Description = "",
-                            Portion = "",
-                            PhotoPath = ""
-                        },
-                        new Product()
-                        {
-                            Name = "Boheima Clara",
-                            Description = "",
-                            Portion = "",
-                            PhotoPath = "../products/drinks/bohemia_clara.png"
-                        },
-                        new Product()
-                        {
-                            Name = "Bohemia Cristal",
-                            Description = "",
-                            Portion = "",
-                            PhotoPath = "../products/drinks/bohemia_cristal.png"
-                        },
-                        new Product()
-                        {
-                            Name = "Bohemia Weizen",
-                            Description = "",
-                            Portion = "",
-                            PhotoPath = "../products/drinks/bohemia_weizen.png"
-                        },
-                        new Product()
-                        {
-                            Name = "Indio",
-                            Description = "",
-                            Portion = "",
-                            PhotoPath = "../products/drinks/indio.png"
-                        },
-                        new Product()
-                        {
-                            Name = "XX Ambar",
-                            Description = "",
-                            Portion = "",
-                            PhotoPath = "../products/drinks/xx_ambar.png"
-                        },
-                        new Product()
-                        {
-                            Name = "XX Lager",
-                            Description = "",
-                            Portion = "",
-                            PhotoPath = "../products/drinks/xx_lager.png"
-                        },
-                    }
+                    Name = "Boneless",
+                    Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
+                    Portion = "700",
+                    PhotoPath = "",
+                    Price = 1.15M
+                },
+                new Food()
+                {
+                    Name = "Tenders",
+                    Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
+                    Portion = "700",
+                    PhotoPath = "",
+                    Price = 1.15M
+                },
+                new Food()
+                {
+                    Name = "Hamburguesa de Pollo",
+                    Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
+                    Portion = "700",
+                    PhotoPath = "",
+                    Price = 1.15M
+                },
+                new Food()
+                {
+                    Name = "Hamburguesa de Res",
+                    Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
+                    Portion = "700",
+                    PhotoPath = "",
+                    Price = 1.15M
+                },
+                new Food()
+                {
+                    Name = "Dedos de queso",
+                    Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
+                    Portion = "700",
+                    PhotoPath = "",
+                    Price = 1.15M
+                },
+                new Food()
+                {
+                    Name = "Papas a la francesa",
+                    Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
+                    Portion = "700",
+                    PhotoPath = "",
+                    Price = 1.15M
+                },
+                new Food()
+                {
+                    Name = "Tiras de camote",
+                    Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
+                    Portion = "700",
+                    PhotoPath = "",
+                    Price = 1.15M
+                }
+                ,
+                new Food()
+                {
+                    Name = "esta es la nueva comida !!!!!!",
+                    Description = "Prueba nuestras deliciosas alitas bañadas de la salsa de tu preferencia !",
+                    Portion = "700",
+                    PhotoPath = "",
+                    Price = 1.15M
+                }
+            },
+                LstSodas = new List<Soda>()
+            {
+              new Soda()
+              {
+                Name = "Coca Cola",
+                Description = "",
+                Capacity = 355,
+                PhotoPath = "",
+                Price = 35M
+              },
+              new Soda()
+              {
+                Name = "Coca Cola Light",
+                Description = "",
+                Capacity = 355,
+                PhotoPath = "",
+                Price = 35M
+              },
+              new Soda()
+              {
+                Name = "Fanta",
+                Description = "",
+                Capacity = 355,
+                PhotoPath = "",
+                Price = 35M
+              },
+              new Soda()
+              {
+                Name = "Fresca",
+                Description = "",
+                Capacity = 355,
+                PhotoPath = "",
+                Price = 35M
+              },
+              new Soda()
+              {
+                Name = "Fresca",
+                Description = "",
+                Capacity = 355,
+                PhotoPath = "",
+                Price = 35M
+              },
+            },
+                LstBeers = new List<Beer>()
+            {
+                new Beer()
+                {
+                    Name = "TKT Light",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "../products/drinks/tkt_light.png",
+                    Price = 35M
+                },
+                new Beer()
+                {
+                    Name = "TKT Roja",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "../products/drinks/tkt_roja.png",
+                    Price = 35M
+                },
+                new Beer()
+                {
+                    Name = "Pacifico",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "../products/drinks/pacifico.png",
+                    Price = 40M
+                },
+                new Beer()
+                {
+                    Name = "Corona",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "../products/drinks/corona.png",
+                    Price = 40M
+                },
+                new Beer()
+                {
+                    Name = "Victoria",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "../products/drinks/victoria.png",
+                    Price = 40M
+                },
+                new Beer()
+                {
+                    Name = "Boheima Clara",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "../products/drinks/bohemia_clara.png",
+                    Price = 40M
+                },
+                new Beer()
+                {
+                    Name = "Boheima Obscura",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "",
+                    Price = 40M
+                },
+                new Beer()
+                {
+                    Name = "Bohemia Cristal",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "../products/drinks/bohemia_cristal.png",
+                    Price = 40M
+                },
+                new Beer()
+                {
+                    Name = "Bohemia Weizen",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "../products/drinks/bohemia_weizen.png",
+                    Price = 40M
+                },
+                new Beer()
+                {
+                    Name = "Indio",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "../products/drinks/indio.png",
+                    Price = 35M
+                },
+                new Beer()
+                {
+                    Name = "XX Ambar",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "../products/drinks/xx_ambar.png",
+                    Price = 35M
+                },
+                new Beer()
+                {
+                    Name = "XX Lager",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "../products/drinks/xx_lager.png",
+                    Price = 35M
+                },
+                new Beer()
+                {
+                    Name = "Heineken",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "",
+                    Price = 40M
+                },
+                new Beer()
+                {
+                    Name = "Heineken 0.0",
+                    Description = "",
+                    Capacity = 250,
+                    PhotoPath = "",
+                    Price = 40M
+                },
+                new Beer()
+                {
+                    Name = "Amstel",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "",
+                    Price = 40M
+                },
+                new Beer()
+                {
+                    Name = "Jabali Hellesbock",
+                    Description = "",
+                    Capacity = 330,
+                    PhotoPath = "",
+                    Price = 60M,
+                    IsCraftBeer = true
+                },
+                new Beer()
+                {
+                    Name = "Jabali Bock",
+                    Description = "",
+                    Capacity = 330,
+                    PhotoPath = "",
+                    Price = 60M,
+                    IsCraftBeer = true
+                },
+                new Beer()
+                {
+                    Name = "Jabali Salvajita",
+                    Description = "",
+                    Capacity = 330,
+                    PhotoPath = "",
+                    Price = 60M,
+                    IsCraftBeer = true
+                },
+                new Beer()
+                {
+                    Name = "Fortuna Cañita",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "",
+                    Price = 75M,
+                    IsCraftBeer = true
+                },
+                new Beer()
+                {
+                    Name = "Fortuna California",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "",
+                    Price = 75M,
+                    IsCraftBeer = true
+                },
+                new Beer()
+                {
+                    Name = "Fortuna Ippolita",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "",
+                    Price = 75M,
+                    IsCraftBeer = true
+                },
+                new Beer()
+                {
+                    Name = "Fortuna Stout",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "",
+                    Price = 75M,
+                    IsCraftBeer = true
+                },
+                new Beer()
+                {
+                    Name = "Fortuna Neippolita",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "",
+                    Price = 75M,
+                    IsCraftBeer = true
+                }
+            },
+                LstSpirits = new List<Spirit>()
+            {
+                new Spirit()
+                {
+                    Name = "Tequila 30x30 Blanco",
+                    Description = "",
+                    Capacity = 0,
+                    PhotoPath = "",
+                    Price = 0
+                },
+                new Spirit()
+                {
+                    Name = "Tequila 30x30 Cristalino",
+                    Description = "",
+                    Capacity = 0,
+                    PhotoPath = "",
+                    Price = 0
+                },
+                new Spirit()
+                {
+                    Name = "Johnnie Walker Etiqueta Roja",
+                    Description = "",
+                    Capacity = 0,
+                    PhotoPath = "",
+                    Price = 0
                 }
             }
-        };
+            };
 
+        var counter = 1;
+        var isRowCompleted = false;
         var strBuilder = new StringBuilder();
 
-        foreach (var category in MenuObj.LstCategories)
+        FoodSection("Comida", ref strBuilder, ref counter, ref isRowCompleted, menuContent.LstFoods);
+
+        DrinksSection("Refrescos", ref strBuilder, ref counter, ref isRowCompleted, menuContent.LstSodas.Cast<Drink>().ToList());
+
+        DrinksSection("Cerveza", ref strBuilder, ref counter, ref isRowCompleted, menuContent.LstBeers.Where(x => x.IsCraftBeer == false).Cast<Drink>().ToList());
+
+        DrinksSection("Cerveza Artesanal", ref strBuilder, ref counter, ref isRowCompleted, menuContent.LstBeers.Where(x => x.IsCraftBeer == true).Cast<Drink>().ToList());
+
+        DrinksSection("Tequilas y Whiskies", ref strBuilder, ref counter, ref isRowCompleted, menuContent.LstSpirits.Cast<Drink>().ToList());
+
+        FormattedHtml = strBuilder.ToString();
+    }
+
+    private void StartHtmlWrapper(Item item,
+                                    ref StringBuilder strBuilder,
+                                    ref int counter,
+                                    ref bool isRowCompleted)
+    {
+        if (counter == 3)
         {
-            strBuilder.Append($"<br/><br/>");
-            strBuilder.Append($"<div>");
-            strBuilder.Append($"<h1>{category.Name}</h1>");
+            counter = 1;
+            isRowCompleted = false;
+        }
 
-            var counter = 1;
-            var isRowCompleted = false;
-            foreach (var product in category.LstProducts)
-            {
-                if (counter == 3)
-                {
-                    counter = 1;
-                    isRowCompleted = false;
-                }
+        if (counter == 1)
+            strBuilder.Append("<div class='box'>");
 
-                if (counter == 1)
-                    strBuilder.Append("<div class='box'>");
+        var imgSrc = "";
+        if (item.PhotoPath != "")
+        {
+            imgSrc = $"src='{item.PhotoPath}'";
+        }
+        else
+        {
+            imgSrc = $"data-src='holder.js/167x120'";
+        }
+    }
 
+    private void EndHtmlWrapper(ref StringBuilder strBuilder,
+                                ref int counter,
+                                ref bool isRowCompleted)
+    {
+        if (counter == 2)
+        {
+            strBuilder.Append("</div>");
+            strBuilder.Append("<hr>");
+            isRowCompleted = true;
+        }
 
-                var imgSrc = "";
-                if(product.PhotoPath != "")
-                {
-                    imgSrc = $"src='{product.PhotoPath}'";
-                } 
-                else
-                {
-                    imgSrc = $"data-src='holder.js/167x120'";
-                }
+        counter++;
+    }
 
-                strBuilder.Append(
-                            $@"<div class='part-{counter}'>
-                            <div class='row'>
-                                <div class='col-7 order-2'>
-                                    <h2>{product.Name}<span class='text-muted'>{product.Portion}</span></h2>
-                                    <p class='lead'>{product.Description}</p>
-                                </div>
-                                <div class='col-5 order-1'>
-                                    <img class='img-thumbnail'
-                                         {imgSrc}
-                                         alt='167x120'
-                                         style='width: 167px; height: 120px;'
-                                         data-holder-rendered='true'>
-                                </div>
+    private void FoodHtmlBody(Food food,
+                            ref StringBuilder strBuilder,
+                            ref int counter)
+    {
+        strBuilder.Append(
+                    $@"<div class='part-{counter}'>
+                        <div class='row'>
+                            <div class='col-7 order-2'>
+                                <h2>{food.Name} <span class='text-muted'>({food.Portion} gr)</span></h2>
+                                <p class='lead'>{food.Description}</p>
                             </div>
-                        </div>");
+                            <div class='col-5 order-1'>
+                                <img class='img-thumbnail'
+                                {ItemPhoto(food.PhotoPath)}
+                                alt='167x120'
+                                style='width: 167px; height: 120px;'
+                                data-holder-rendered='true'>
+                            </div>
+                        </div>
+                    </div>");
+    }
 
-                if (counter == 2)
-                {
-                    strBuilder.Append("</div>");
-                    strBuilder.Append("<hr>");
-                    isRowCompleted = true;
-                }
+    private void DrinksHtmlBody(Drink drink,
+                                ref StringBuilder strBuilder,
+                                ref int counter)
+    {
+        strBuilder.Append(
+                        $@"<div class='part-{counter}'>
+                        <div class='row'>
+                            <div class='col-7 order-2'>
+                                <h2>{drink.Name} <span class='text-muted'>({drink.Capacity} ml)</span></h2>
+                                <h4 class='text-muted'>
+                                    ${drink.Price}
+                                </h4>
+                            </div>
+                            <div class='col-5 order-1'>
+                                <img class='img-thumbnail'
+                                {ItemPhoto(drink.PhotoPath)}
+                                alt='167x120'
+                                style='width: 167px; height: 120px;'
+                                data-holder-rendered='true'>
+                            </div>
+                        </div>
+                    </div>");
+    }
 
-                counter++;
-            }
+    private string ItemPhoto(string photoPath)
+    {
+        var src = "";
+        if (photoPath != "")
+        {
+            src = $"src='{photoPath}'";
+        }
+        else
+        {
+            src = $"data-src='holder.js/167x120'";
+        }
 
-            if (!isRowCompleted)
-            {
-                strBuilder.Append(
+        return src;
+    }
+
+    private void EndOfSection(ref StringBuilder strBuilder, ref bool isRowCompleted)
+    {
+        if (!isRowCompleted)
+        {
+            strBuilder.Append(
                             $@"<div class='part-2'>
                             <div class='row'>
                                 <div class='col-7 order-2'>
@@ -254,12 +528,52 @@
                                 </div>
                             </div>
                         </div>");
-            }
-
-            strBuilder.Append($"</div>");
         }
 
-        FormattedHtml = strBuilder.ToString();
+        strBuilder.Append("</div>");
+
+        strBuilder.Append($"<br/><br/>");
+        strBuilder.Append($"<div>");
+    }
+
+    private void FoodSection(string sectionName, ref StringBuilder strBuilder, ref int counter, ref bool isRowCompleted, List<Food> lstFoods)
+    {
+        strBuilder.Append($"<br/><br/>");
+        strBuilder.Append($"<div>");
+
+        counter = 1;
+        isRowCompleted = false;
+        strBuilder.Append($"<h1>{sectionName}</h1>");
+        foreach (var food in lstFoods)
+        {
+            StartHtmlWrapper(food, ref strBuilder, ref counter, ref isRowCompleted);
+
+            FoodHtmlBody(food, ref strBuilder, ref counter);
+
+            EndHtmlWrapper(ref strBuilder, ref counter, ref isRowCompleted);
+        }
+
+        EndOfSection(ref strBuilder, ref isRowCompleted);
+    }
+    
+    private void DrinksSection(string sectionName, ref StringBuilder strBuilder, ref int counter, ref bool isRowCompleted, List<Drink> lstDrinks)
+    {
+        strBuilder.Append($"<br/><br/>");
+        strBuilder.Append($"<div>");
+
+        counter = 1;
+        isRowCompleted = false;
+        strBuilder.Append($"<h1>{sectionName}</h1>");
+        foreach (var drink in lstDrinks)
+        {
+            StartHtmlWrapper(drink, ref strBuilder, ref counter, ref isRowCompleted);
+
+            DrinksHtmlBody(drink, ref strBuilder, ref counter);
+
+            EndHtmlWrapper(ref strBuilder, ref counter, ref isRowCompleted);
+        }
+
+        EndOfSection(ref strBuilder, ref isRowCompleted);
     }
 }
 
