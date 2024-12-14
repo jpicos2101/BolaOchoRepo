@@ -39,6 +39,27 @@ module.exports = function (grunt) {
                         expand: true,
                         filter: "isFile",
                         flatten: true
+                    },
+                    {
+                        src: "**",
+                        dest: "wwwroot/vendors/fontawesome/css",
+                        cwd: '../node_modules/@fortawesome/fontawesome-free/css',
+                        expand: true,
+                        filter: "isFile"
+                    },
+                    {
+                        src: "**",
+                        dest: "wwwroot/vendors/fontawesome/js",
+                        cwd: '../node_modules/@fortawesome/fontawesome-free/js',
+                        expand: true,
+                        filter: "isFile"
+                    },
+                    {
+                        src: "**",
+                        dest: "wwwroot/vendors/fontawesome/svgs",
+                        cwd: '../node_modules/@fortawesome/fontawesome-free/svgs',
+                        expand: true,
+                        filter: "isFile"
                     }
                 ]
             }
