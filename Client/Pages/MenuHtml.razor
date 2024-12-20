@@ -29,18 +29,20 @@
 
     public class Food : Item
     {
-        public string TitlePortion { get; set; } = string.Empty;
+        public string? Portion { get; set; }
 
         public List<SauceEnum>? LstSauces { get; set; }
 
-        public List<PortionDetails>? LstPortions { get; set; }
+        public List<FoodOptions>? LstOptions { get; set; }
     }
 
     public class Drink : Item
     {
-        public int Capacity { get; set; } = 0;
+        public int? Capacity { get; set; }
 
-        public string Paring { get; set; } = string.Empty;
+        public string? Paring { get; set; }
+
+        public List<DrinkOptions>? LstOptions { get; set; }
     }
 
     public class Soda : Drink
@@ -55,14 +57,27 @@
 
     public class Spirit : Drink
     {
-        public bool SellingBottle { get; set; } = false;
+
     }
 
-    public class PortionDetails
+    public class FoodOptions
     {
-        public required string PortionSize { get; set; }
+        public required int PortionGrams { get; set; }
 
         public required decimal Price { get; set; }
+
+        public string? Dressing { get; set; }
+    }
+
+    public class DrinkOptions
+    {
+        public required string Name { get; set; }
+
+        public required int Capacity { get; set; }
+
+        public required decimal Price { get; set; }
+
+        public string? Extras { get; set; }
     }
 
     public enum SauceEnum
@@ -76,7 +91,13 @@
         [Description("T. Habanero")]
         TamarindoHabanero,
         [Description("M. Habanero")]
-        MangoHabanero
+        MangoHabanero,
+        [Description("Smoky Bbq")]
+        SmokyBbq,
+        [Description("L. Pepper")]
+        LemonPepper,
+        [Description("Parmesano")]
+        Parmesano
     }
 
     public Dictionary<string, int> LstSauces = new Dictionary<string, int>();
@@ -84,6 +105,9 @@
     protected override void OnInitialized()
     {
         LstSauces.Add("Bbq", 0);
+        LstSauces.Add("SmokyBbq", 0);
+        LstSauces.Add("LemonPepper", 0);
+        LstSauces.Add("Parmesano", 0);
         LstSauces.Add("HotBbq", 1);
         LstSauces.Add("Buffalo", 1);
         LstSauces.Add("TamarindoHabanero", 2);
@@ -97,9 +121,9 @@
                 {
                     Name = "Alitas",
                     Description = "Deliciosas alitas de pollo acompañadas de verduras y aderezo ranch",
-                    TitlePortion = "350/700",
+                    Portion = "(350gr/700gr)",
                     PhotoPath = "",
-                    Price = 1.15M,
+                    Price = 0,
                     LstSauces = new List<SauceEnum>()
                     {
                         SauceEnum.Bbq,
@@ -108,16 +132,16 @@
                         SauceEnum.TamarindoHabanero,
                         SauceEnum.MangoHabanero
                     },
-                    LstPortions = new List<PortionDetails>(){
-                        new PortionDetails()
+                    LstOptions = new List<FoodOptions>(){
+                        new FoodOptions()
                         {
-                            PortionSize = "350",
-                            Price = 150
+                            PortionGrams = 350,
+                            Price = 90
                         },
-                        new PortionDetails()
+                        new FoodOptions()
                         {
-                          PortionSize = "700",
-                          Price = 250
+                          PortionGrams = 700,
+                          Price = 179
                         }
                     }
                 },
@@ -125,9 +149,9 @@
                 {
                     Name = "Boneless",
                     Description = "Bolitas de pollo empanizadas acompañadas de verduras y aderezo ranch",
-                    TitlePortion = "700",
+                    Portion = "(300gr)",
                     PhotoPath = "",
-                    Price = 1.15M,
+                    Price = 169M,
                     LstSauces = new List<SauceEnum>()
                     {
                         SauceEnum.Bbq,
@@ -141,9 +165,9 @@
                 {
                     Name = "Tenders",
                     Description = "Tiras de pollo empanizadas acompañadas de verduras y aderezo ranch",
-                    TitlePortion = "700",
+                    Portion = "(300gr)",
                     PhotoPath = "",
-                    Price = 1.15M,
+                    Price = 169M,
                     LstSauces = new List<SauceEnum>()
                     {
                         SauceEnum.Bbq,
@@ -157,9 +181,9 @@
                 {
                     Name = "Hamburguesa de Pollo",
                     Description = "Hamburguesa de tenders de pollo, pan brichole y verduras",
-                    TitlePortion = "700",
+                    Portion = "",
                     PhotoPath = "",
-                    Price = 1.15M,
+                    Price = 150M,
                     LstSauces = new List<SauceEnum>()
                     {
                         SauceEnum.Buffalo
@@ -169,33 +193,109 @@
                 {
                     Name = "Hamburguesa de Res",
                     Description = "Hamburguesa de arrachera, pan brichole y verduras",
-                    TitlePortion = "700",
+                    Portion = "",
                     PhotoPath = "",
-                    Price = 1.15M
+                    Price = 160M
                 },
                 new Food()
                 {
-                    Name = "Dedos de queso",
+                    Name = "Dedos de Queso",
                     Description = "Barritas de queso empanizado con catsup como aderezo",
-                    TitlePortion = "700",
+                    Portion = "(x6)",
                     PhotoPath = "",
-                    Price = 1.15M
+                    Price = 109M
                 },
                 new Food()
                 {
-                    Name = "Papas a la francesa",
-                    Description = "Papas a la francesa aderezadas con lemon pepper y catsup como aderezo",
-                    TitlePortion = "700",
+                    Name = "Papas a la Francesa",
+                    Description = "Aderezadas con lemon pepper acompañadas de catsup",
+                    Portion = "(300gr)",
                     PhotoPath = "",
-                    Price = 1.15M
+                    Price = 75M,
+                    LstOptions = new List<FoodOptions>()
+                    {
+                        new FoodOptions()
+                        {
+                            PortionGrams = 300,
+                            Price = 75M
+                        },
+                        new FoodOptions()
+                        {
+                            PortionGrams = 300,
+                            Price = 100M,
+                            Dressing = "con queso"
+                        },
+                    }
                 },
                 new Food()
                 {
-                    Name = "Tiras de camote",
-                    Description = "Tiras de camote aderezadas con lemon pepper y catsup como aderezo",
-                    TitlePortion = "700",
+                    Name = "Tiras de Camote",
+                    Description = "Aderezadas con lemon pepper acompañadas de catsup",
+                    Portion = "(300gr)",
                     PhotoPath = "",
-                    Price = 1.15M
+                    Price = 75M
+                },
+                new Food()
+                {
+                    Name = "Papas Gajo",
+                    Description = "Acompañadas de catsup",
+                    Portion = "(300gr)",
+                    PhotoPath = "",
+                    Price = 75M,
+                    LstOptions = new List<FoodOptions>()
+                    {
+                        new FoodOptions()
+                        {
+                            PortionGrams = 300,
+                            Price = 75M
+                        },
+                        new FoodOptions()
+                        {
+                            PortionGrams = 300,
+                            Price = 100M,
+                            Dressing = "con queso"
+                        },
+                    }
+                },
+                new Food()
+                {
+                    Name = "Salchipulpos",
+                    Description = "Trocitos de salchita frita acompañadas de catsup",
+                    Portion = "(250gr)",
+                    PhotoPath = "",
+                    Price = 80M
+                },
+                new Food()
+                {
+                    Name = "Salchicha Botanera",
+                    Description = "Cubitos de salchicha aderezada con limon, sal y salsas",
+                    Portion = "(300gr)",
+                    PhotoPath = "",
+                    Price = 85M
+                },
+                new Food()
+                {
+                    Name = "Aros de Cebolla",
+                    Description = "Aros de cebolla frita acompañadas de catsup",
+                    Portion = "(150gr)",
+                    PhotoPath = "",
+                    Price = 75M
+                },
+                new Food()
+                {
+                    Name = "Carne Seca",
+                    Description = "Acompañada de pepino y aderezada con limon y salas",
+                    Portion = "(50gr)",
+                    PhotoPath = "",
+                    Price = 120M
+                },
+                new Food()
+                {
+                    Name = "Papas Doradas",
+                    Description = "Papas doradas aderezadas con limon y salas negras y rojas",
+                    Portion = "(100gr)",
+                    PhotoPath = "",
+                    Price = 55M
                 }
             },
             LstSodas = new List<Soda>()
@@ -231,15 +331,7 @@
                 Capacity = 355,
                 PhotoPath = "",
                 Price = 35M
-              },
-              new Soda()
-              {
-                Name = "Fresca",
-                Description = "",
-                Capacity = 355,
-                PhotoPath = "",
-                Price = 35M
-              },
+              }
             },
             LstBeers = new List<Beer>()
             {
@@ -249,7 +341,23 @@
                     Description = "",
                     Capacity = 355,
                     PhotoPath = "../products/drinks/tkt_light.png",
-                    Price = 35M
+                    Price = 0,
+                    LstOptions = new List<DrinkOptions>
+                    {
+                        new DrinkOptions()
+                        {
+                            Name = "TKT Light",
+                            Capacity = 355,
+                            Price = 35
+                        },
+                        new DrinkOptions()
+                        {
+                            Name = "Cubeta TKT Light",
+                            Capacity = 0,
+                            Price = 300,
+                            Extras = "Cubeta con 10 botellas de 355 ml"
+                        }
+                    }
                 },
                 new Beer()
                 {
@@ -444,7 +552,24 @@
                     Description = "",
                     Capacity = 0,
                     PhotoPath = "",
-                    Price = 0
+                    Price = 0,
+                    LstOptions = new List<DrinkOptions>()
+                    {
+                        new DrinkOptions()
+                        {
+                            Name = "Shot",
+                            Price = 65,
+                            Capacity = 45,
+                            Extras = "Incluye 1 mezclador (refresco, agua natural, limonada o naranjada)"
+                        },
+                        new DrinkOptions()
+                        {
+                            Name = "Botella",
+                            Price = 890,
+                            Capacity = 750,
+                            Extras = "Incluye 4 mezcladores (refresco, agua natural, limonada o naranjada)"
+                        }
+                    }
                 },
                 new Spirit()
                 {
@@ -452,7 +577,24 @@
                     Description = "",
                     Capacity = 0,
                     PhotoPath = "",
-                    Price = 0
+                    Price = 0,
+                    LstOptions = new List<DrinkOptions>()
+                    {
+                        new DrinkOptions()
+                        {
+                            Name = "Shot",
+                            Price = 85,
+                            Capacity = 45,
+                            Extras = "Incluye 1 mezclador (refresco, agua natural, limonada o naranjada)"
+                        },
+                        new DrinkOptions()
+                        {
+                            Name = "Botella",
+                            Price = 1590,
+                            Capacity = 750,
+                            Extras = "Incluye 4 mezcladores (refresco, agua natural, limonada o naranjada)"
+                        }
+                    }
                 },
                 new Spirit()
                 {
@@ -460,7 +602,24 @@
                     Description = "",
                     Capacity = 0,
                     PhotoPath = "",
-                    Price = 0
+                    Price = 0,
+                    LstOptions = new List<DrinkOptions>()
+                    {
+                        new DrinkOptions()
+                        {
+                            Name = "Shot",
+                            Price = 65,
+                            Capacity = 45,
+                            Extras = "Incluye 1 mezclador (refresco, agua natural, limonada o naranjada)"
+                        },
+                        new DrinkOptions()
+                        {
+                            Name = "Botella",
+                            Price = 890,
+                            Capacity = 700,
+                            Extras = "Incluye 4 mezcladores (refresco, agua natural, limonada o naranjada)"
+                        }
+                    }
                 }
             }
         };
@@ -524,32 +683,56 @@
                             ref StringBuilder strBuilder,
                             ref int counter)
     {
+        if (food == null) return;
+
+        var isFlipCard = "";
+        var detailsLabel = "";
+        var priceInTitle = "";
+
+        if (food.LstOptions != null &&
+            food.LstOptions.Count >= 1)
+        {
+            isFlipCard = "flip-card";
+            detailsLabel = "Detalles >>";
+        } else
+        {
+            priceInTitle = $"<span class='text-muted'>- Por tan solo <strong>${food.Price}</strong></span>";
+        }
+
         strBuilder.Append(
                     $@"
-                    <div class='part-{counter} flip-card'>
+                    <div class='part-{counter} {isFlipCard}'>
                         <div class='flip-card-inner'>
                             <div class='flip-card-front'>
                                 <div class='row'>
-                                    <div class='col-7 order-2'>
-                                        <h2>{food.Name} <span class='text-muted'>({food.TitlePortion} gr)</span></h2>
-                                        <p class='lead'>{food.Description}</p>
-                                    </div>
                                     <div class='col-5 order-1'>
                                         <img class='img-thumbnail'
-                                        {ItemPhoto(food.PhotoPath)}
+                                    {ItemPhoto(food.PhotoPath)}
                                         alt='167x120'
                                         style='width: 167px; height: 120px;'
                                         data-holder-rendered='true'>
+                                    </div>
+                                    <div class='col-7 order-2'>
+                                        <h2>{food.Name} <span class='text-muted'>{food.Portion}</span></h2>
+                                        <p class='lead'>{food.Description}</p>
+                                    {priceInTitle}
+                                    </div>
+                                </div>
+                                <div class='row'>
+                                    <div class='col-12'>
+                                        <div style='float: right; font-weight: bold;'>
+                                            &nbsp;{detailsLabel}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class='flip-card-back'>
                                 <div class='row'>
                                     <div class='col-8'>
-                                        {GetPortionsDetails(food)}
+                                {GetPortionsDetails(food)}
                                     </div>
                                     <div class='col-4' style='font-size:small;'>
-                                        {GetSauceList(food)}
+                                {GetSauceList(food)}
                                     </div>
                                 </div>
                             </div>
@@ -560,14 +743,16 @@
 
     private string GetPortionsDetails(Food food)
     {
-        if (food.LstPortions == null) return "";
+        if (food.LstOptions == null) return "";
 
         var strBuilder = new StringBuilder();
 
         strBuilder.Append("<div>");
-        foreach (var portion in food.LstPortions)
+        foreach (var portion in food.LstOptions)
         {
-            strBuilder.Append($"<div style='padding-top:15px;'>Porción de <strong>{portion.PortionSize} gr</strong> a tan solo <strong>${portion.Price}</strong></div>");
+            var dressing = !string.IsNullOrEmpty(portion.Dressing) ? $"({portion.Dressing})" : "";
+
+            strBuilder.Append($"<div style='padding-top:15px;'>Porción de <strong>{portion.PortionGrams} gr {dressing}</strong> a tan solo <strong>${portion.Price}</strong></div>");
         }
         strBuilder.Append("</div>");
 
@@ -594,7 +779,7 @@
     {
         var enumType = typeof(SauceEnum);
         var memberInfo = enumType.GetMember(sauce.ToString());
-        
+
         if (memberInfo.Length > 0)
         {
             var displayAttribute = (DescriptionAttribute)Attribute.GetCustomAttribute(memberInfo[0], typeof(DescriptionAttribute));
@@ -628,24 +813,84 @@
                                 ref StringBuilder strBuilder,
                                 ref int counter)
     {
+        if (drink == null) return;
+
+        var isFlipCard = "";
+        var detailsLabel = "";
+        var priceInTitle = "";
+
+        if (drink.LstOptions != null &&
+            drink.LstOptions.Count >= 1)
+        {
+            isFlipCard = "flip-card";
+            detailsLabel = "Detalles >>";
+        }
+        else
+        {
+            priceInTitle = $"<span class='text-muted'>- Por tan solo <strong>${drink.Price}</strong></span>";
+        }
+
+        var capacity = drink.Capacity != 0 ? $"({drink.Capacity} ml)" : "";
+
         strBuilder.Append(
-                        $@"<div class='part-{counter}'>
-                        <div class='row'>
-                            <div class='col-7 order-2'>
-                                <h2>{drink.Name} <span class='text-muted'>({drink.Capacity} ml)</span></h2>
-                                <h4 class='text-muted'>
-                                    ${drink.Price}
-                                </h4>
-                            </div>
-                            <div class='col-5 order-1'>
-                                <img class='img-thumbnail'
-                                {ItemPhoto(drink.PhotoPath)}
-                                alt='167x120'
-                                style='width: 167px; height: 120px;'
-                                data-holder-rendered='true'>
+        $@"
+        <div class='part-{counter} {isFlipCard}'>
+            <div class='flip-card-inner'>
+                <div class='flip-card-front'>
+                    <div class='row'>
+                        <div class='col-5 order-1'>
+                            <img class='img-thumbnail'
+                            {ItemPhoto(drink.PhotoPath)}
+                            alt='167x120'
+                            style='width: 167px; height: 120px;'
+                            data-holder-rendered='true'>
+                        </div>
+                        <div class='col-7 order-2'>
+                            <h2>{drink.Name} <span class='text-muted'>{capacity}</span></h2>
+                        {priceInTitle}
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-12'>
+                            <div style='float: right; font-weight: bold;'>
+                                &nbsp;{detailsLabel}
                             </div>
                         </div>
-                    </div>");
+                    </div>
+                </div>
+                <div class='flip-card-back'>
+                    <div class='row'>
+                        <div class='col-12'>
+                        {GetDrinkOptions(drink)}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        ");
+    }
+
+    private string GetDrinkOptions(Drink drink)
+    {
+        if (drink.LstOptions == null) return "";
+
+        var strBuilder = new StringBuilder();
+
+        strBuilder.Append("<div>");
+        foreach (var option in drink.LstOptions)
+        {
+            var showCapacity = option.Capacity != 0 ? $" de <strong>{option.Capacity} ml</strong>" : "";
+            var showExtras = !string.IsNullOrEmpty(option.Extras) ? $"<span class='text-muted'>- {option.Extras}</span>" : "";
+
+            strBuilder.Append($@"
+                                <div style='padding-top:15px;'>{option.Name}{showCapacity} a tan solo <strong>${option.Price}</strong>
+                                    <br/>
+                                    {showExtras}
+                                </div>");
+        }
+        strBuilder.Append("</div>");
+
+        return strBuilder.ToString();
     }
 
     private string ItemPhoto(string photoPath)
@@ -691,7 +936,7 @@
         counter = 1;
         isRowCompleted = false;
         strBuilder.Append($"<h1>{sectionName}</h1>");
-        foreach (var food in lstFoods)
+        foreach (var food in lstFoods.OrderBy(x => x.Name))
         {
             StartHtmlWrapper(food, ref strBuilder, ref counter, ref isRowCompleted);
 
@@ -731,7 +976,6 @@
         display: flex;
         justify-content: center;
         flex-flow: row nowrap;
-        /*margin-bottom: 5px;*/
     }
 
     .part-1, .part-2 {
@@ -739,13 +983,12 @@
         border: 1px solid #f1f1f1;
         margin: 5px;
         padding: 5px;
-        height: 210px;
+        min-height: 230px;
     }
 
     @@media screen and (max-width:1000px) {
         .box {
             flex-flow: column nowrap;
-            /*margin-bottom: 20px;*/
         }
 
         .text-muted {
@@ -755,31 +998,29 @@
         .adjustmentClass {
             margin-top: -270px;
         }
+
+        .part-1, .part-2 {
+            min-height: 240px;
+        }
     }
 
-    /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
     .flip-card {
-        background-color: transparent;
-        min-height: 210px;
-        perspective: 1000px; /* Remove this if you don't want the 3D effect */
+        background-color: transparent;        
+        perspective: 1000px;
     }
 
-    /* This container is needed to position the front and back side */
     .flip-card-inner {
         position: relative;
         width: 100%;
         height: 100%;
-        /*text-align: center;*/
         transition: transform 0.8s;
         transform-style: preserve-3d;
     }
 
-    /* Do an horizontal flip when you move the mouse over the flip box container */
     .flip-card:hover .flip-card-inner {
         transform: rotateY(180deg);
     }
 
-    /* Position the front and back side */
     .flip-card-front, .flip-card-back {
         position: absolute;
         width: 100%;
@@ -788,16 +1029,11 @@
         backface-visibility: hidden;
     }
 
-    /* Style the front side (fallback if image is missing) */
     .flip-card-front {
-        /*background-color: #bbb;*/
         color: black;
     }
 
-    /* Style the back side */
     .flip-card-back {
-        /*background-color: dodgerblue;
-                        color: white;*/
         transform: rotateY(180deg);
     }
 </style>
