@@ -38,6 +38,8 @@
 
     public class Drink : Item
     {
+        public string? DrinkType { get; set; }
+
         public int? Capacity { get; set; }
 
         public string? Paring { get; set; }
@@ -47,17 +49,28 @@
 
     public class Soda : Drink
     {
-
+        public Soda()
+        {
+            DrinkType = "Soda";
+        }
     }
 
     public class Beer : Drink
     {
+        public Beer()
+        {
+            DrinkType = "Beer";
+        }
+
         public bool IsCraftBeer { get; set; } = false;
     }
 
     public class Spirit : Drink
     {
-
+        public Spirit()
+        {
+            DrinkType = "Spirit";
+        }
     }
 
     public class FoodOptions
@@ -114,8 +127,8 @@
         LstSauces.Add("MangoHabanero", 2);
 
         var menuContent = new MenuContent()
-        {
-            LstFoods = new List<Food>()
+            {
+                LstFoods = new List<Food>()
             {
                 new Food()
                 {
@@ -127,6 +140,9 @@
                     LstSauces = new List<SauceEnum>()
                     {
                         SauceEnum.Bbq,
+                        SauceEnum.SmokyBbq,
+                        SauceEnum.LemonPepper,
+                        SauceEnum.Parmesano,
                         SauceEnum.HotBbq,
                         SauceEnum.Buffalo,
                         SauceEnum.TamarindoHabanero,
@@ -298,14 +314,14 @@
                     Price = 55M
                 }
             },
-            LstSodas = new List<Soda>()
+                LstSodas = new List<Soda>()
             {
               new Soda()
               {
                 Name = "Coca Cola",
                 Description = "",
                 Capacity = 355,
-                PhotoPath = "",
+                PhotoPath = "../products/drinks/coca_cola_167x120.png",
                 Price = 35M
               },
               new Soda()
@@ -313,7 +329,7 @@
                 Name = "Coca Cola Light",
                 Description = "",
                 Capacity = 355,
-                PhotoPath = "",
+                PhotoPath = "../products/drinks/coca_light_167x120.png",
                 Price = 35M
               },
               new Soda()
@@ -321,7 +337,7 @@
                 Name = "Fanta",
                 Description = "",
                 Capacity = 355,
-                PhotoPath = "",
+                PhotoPath = "../products/drinks/fanta_167x120.png",
                 Price = 35M
               },
               new Soda()
@@ -329,18 +345,18 @@
                 Name = "Fresca",
                 Description = "",
                 Capacity = 355,
-                PhotoPath = "",
+                PhotoPath = "../products/drinks/fresca_167x120.png",
                 Price = 35M
               }
             },
-            LstBeers = new List<Beer>()
+                LstBeers = new List<Beer>()
             {
                 new Beer()
                 {
                     Name = "TKT Light",
                     Description = "",
                     Capacity = 355,
-                    PhotoPath = "../products/drinks/tkt_light.png",
+                    PhotoPath = "../products/drinks/tkt_light_167x120.png",
                     Price = 0,
                     LstOptions = new List<DrinkOptions>
                     {
@@ -364,119 +380,343 @@
                     Name = "TKT Roja",
                     Description = "",
                     Capacity = 355,
-                    PhotoPath = "../products/drinks/tkt_roja.png",
-                    Price = 35M
+                    PhotoPath = "../products/drinks/tkt_roja_167x120.png",
+                    Price = 0,
+                    LstOptions = new List<DrinkOptions>
+                    {
+                        new DrinkOptions()
+                        {
+                            Name = "TKT Roja",
+                            Capacity = 355,
+                            Price = 35
+                        },
+                        new DrinkOptions()
+                        {
+                            Name = "Cubeta TKT Roja",
+                            Capacity = 0,
+                            Price = 300,
+                            Extras = "Cubeta con 10 botellas de 355 ml"
+                        }
+                    }
                 },
                 new Beer()
                 {
                     Name = "Pacifico",
                     Description = "",
                     Capacity = 355,
-                    PhotoPath = "../products/drinks/pacifico.png",
-                    Price = 40M
+                    PhotoPath = "../products/drinks/pacifico_167x120.png",
+                    Price = 0,
+                    LstOptions = new List<DrinkOptions>
+                    {
+                        new DrinkOptions()
+                        {
+                            Name = "Pacifico",
+                            Capacity = 355,
+                            Price = 40
+                        },
+                        new DrinkOptions()
+                        {
+                            Name = "Cubeta Pacifico",
+                            Capacity = 0,
+                            Price = 380,
+                            Extras = "Cubeta con 10 botellas de 355 ml"
+                        }
+                    }
                 },
                 new Beer()
                 {
                     Name = "Corona",
                     Description = "",
                     Capacity = 355,
-                    PhotoPath = "../products/drinks/corona.png",
-                    Price = 40M
+                    PhotoPath = "../products/drinks/corona_167x120.png",
+                    Price = 0,
+                    LstOptions = new List<DrinkOptions>
+                    {
+                        new DrinkOptions()
+                        {
+                            Name = "Corona",
+                            Capacity = 355,
+                            Price = 40
+                        },
+                        new DrinkOptions()
+                        {
+                            Name = "Cubeta Corona",
+                            Capacity = 0,
+                            Price = 380,
+                            Extras = "Cubeta con 10 botellas de 355 ml"
+                        }
+                    }
                 },
                 new Beer()
                 {
                     Name = "Victoria",
                     Description = "",
                     Capacity = 355,
-                    PhotoPath = "../products/drinks/victoria.png",
-                    Price = 40M
+                    PhotoPath = "../products/drinks/victoria_167x120.png",
+                    Price = 0,
+                    LstOptions = new List<DrinkOptions>
+                    {
+                        new DrinkOptions()
+                        {
+                            Name = "Victoria",
+                            Capacity = 355,
+                            Price = 40
+                        },
+                        new DrinkOptions()
+                        {
+                            Name = "Cubeta Victoria",
+                            Capacity = 0,
+                            Price = 380,
+                            Extras = "Cubeta con 10 botellas de 355 ml"
+                        }
+                    }
                 },
                 new Beer()
                 {
                     Name = "Boheima Clara",
                     Description = "",
                     Capacity = 355,
-                    PhotoPath = "../products/drinks/bohemia_clara.png",
-                    Price = 40M
+                    PhotoPath = "../products/drinks/clara_167x120.png",
+                    Price = 0,
+                    LstOptions = new List<DrinkOptions>
+                    {
+                        new DrinkOptions()
+                        {
+                            Name = "Bohemia Clara",
+                            Capacity = 355,
+                            Price = 40
+                        },
+                        new DrinkOptions()
+                        {
+                            Name = "Cubeta Bohemia Clara",
+                            Capacity = 0,
+                            Price = 380,
+                            Extras = "Cubeta con 10 botellas de 355 ml"
+                        }
+                    }
                 },
                 new Beer()
                 {
                     Name = "Boheima Obscura",
                     Description = "",
                     Capacity = 355,
-                    PhotoPath = "",
-                    Price = 40M
+                    PhotoPath = "../products/drinks/obscura_167x120.png",
+                    Price = 0,
+                    LstOptions = new List<DrinkOptions>
+                    {
+                        new DrinkOptions()
+                        {
+                            Name = "Bohemia Obscura",
+                            Capacity = 355,
+                            Price = 40
+                        },
+                        new DrinkOptions()
+                        {
+                            Name = "Cubeta Bohemia Obscura",
+                            Capacity = 0,
+                            Price = 380,
+                            Extras = "Cubeta con 10 botellas de 355 ml"
+                        }
+                    }
                 },
                 new Beer()
                 {
                     Name = "Bohemia Cristal",
                     Description = "",
                     Capacity = 355,
-                    PhotoPath = "../products/drinks/bohemia_cristal.png",
-                    Price = 40M
+                    PhotoPath = "../products/drinks/cristal_167x120.png",
+                    Price = 0,
+                    LstOptions = new List<DrinkOptions>
+                    {
+                        new DrinkOptions()
+                        {
+                            Name = "Bohemia Cristal",
+                            Capacity = 355,
+                            Price = 40
+                        },
+                        new DrinkOptions()
+                        {
+                            Name = "Cubeta Bohemia Cristal",
+                            Capacity = 0,
+                            Price = 380,
+                            Extras = "Cubeta con 10 botellas de 355 ml"
+                        }
+                    }
                 },
                 new Beer()
                 {
                     Name = "Bohemia Weizen",
                     Description = "",
                     Capacity = 355,
-                    PhotoPath = "../products/drinks/bohemia_weizen.png",
-                    Price = 40M
+                    PhotoPath = "../products/drinks/weizen_167x120.png",
+                    Price = 0,
+                    LstOptions = new List<DrinkOptions>
+                    {
+                        new DrinkOptions()
+                        {
+                            Name = "Bohemia Weizen",
+                            Capacity = 355,
+                            Price = 40
+                        },
+                        new DrinkOptions()
+                        {
+                            Name = "Cubeta Bohemia Weizen",
+                            Capacity = 0,
+                            Price = 380,
+                            Extras = "Cubeta con 10 botellas de 355 ml"
+                        }
+                    }
                 },
                 new Beer()
                 {
                     Name = "Indio",
                     Description = "",
                     Capacity = 355,
-                    PhotoPath = "../products/drinks/indio.png",
-                    Price = 35M
+                    PhotoPath = "../products/drinks/indio_167x120.png",
+                    Price = 0,
+                    LstOptions = new List<DrinkOptions>
+                    {
+                        new DrinkOptions()
+                        {
+                            Name = "Indio",
+                            Capacity = 355,
+                            Price = 35
+                        },
+                        new DrinkOptions()
+                        {
+                            Name = "Cubeta Indio",
+                            Capacity = 0,
+                            Price = 300,
+                            Extras = "Cubeta con 10 botellas de 355 ml"
+                        }
+                    }
                 },
                 new Beer()
                 {
                     Name = "XX Ambar",
                     Description = "",
                     Capacity = 355,
-                    PhotoPath = "../products/drinks/xx_ambar.png",
-                    Price = 35M
+                    PhotoPath = "../products/drinks/ambar_167x120.png",
+                    Price = 0,
+                    LstOptions = new List<DrinkOptions>
+                    {
+                        new DrinkOptions()
+                        {
+                            Name = "XX Ambar",
+                            Capacity = 355,
+                            Price = 35
+                        },
+                        new DrinkOptions()
+                        {
+                            Name = "Cubeta XX Ambar",
+                            Capacity = 0,
+                            Price = 300,
+                            Extras = "Cubeta con 10 botellas de 355 ml"
+                        }
+                    }
                 },
                 new Beer()
                 {
                     Name = "XX Lager",
                     Description = "",
                     Capacity = 355,
-                    PhotoPath = "../products/drinks/xx_lager.png",
-                    Price = 35M
+                    PhotoPath = "../products/drinks/lager_167x120.png",
+                    Price = 0,
+                    LstOptions = new List<DrinkOptions>
+                    {
+                        new DrinkOptions()
+                        {
+                            Name = "XX Lager",
+                            Capacity = 355,
+                            Price = 35
+                        },
+                        new DrinkOptions()
+                        {
+                            Name = "Cubeta XX Lager",
+                            Capacity = 0,
+                            Price = 300,
+                            Extras = "Cubeta con 10 botellas de 355 ml"
+                        }
+                    }
                 },
                 new Beer()
                 {
                     Name = "Heineken",
                     Description = "",
                     Capacity = 355,
-                    PhotoPath = "",
-                    Price = 40M
+                    PhotoPath = "../products/drinks/heineken_167x120.png",
+                    Price = 0M,
+                    LstOptions = new List<DrinkOptions>
+                    {
+                        new DrinkOptions()
+                        {
+                            Name = "Heineken",
+                            Capacity = 355,
+                            Price = 40M
+                        },
+                        new DrinkOptions()
+                        {
+                            Name = "Cubeta Heineken",
+                            Capacity = 0,
+                            Price = 380M,
+                            Extras = "Cubeta con 10 botellas de 355 ml"
+                        }
+                    }
                 },
                 new Beer()
                 {
                     Name = "Heineken 0.0",
                     Description = "",
                     Capacity = 250,
-                    PhotoPath = "",
-                    Price = 40M
+                    PhotoPath = "../products/drinks/heineken0_167x120.png",
+                    Price = 0M,
+                    LstOptions = new List<DrinkOptions>
+                    {
+                        new DrinkOptions()
+                        {
+                            Name = "Heineken 0.0",
+                            Capacity = 355,
+                            Price = 40M
+                        },
+                        new DrinkOptions()
+                        {
+                            Name = "Cubeta Heineken 0.0",
+                            Capacity = 0,
+                            Price = 380M,
+                            Extras = "Cubeta con 10 botellas de 355 ml"
+                        }
+                    }
                 },
                 new Beer()
                 {
                     Name = "Amstel",
                     Description = "",
                     Capacity = 355,
-                    PhotoPath = "",
-                    Price = 40M
+                    PhotoPath = "../products/drinks/amstel_167x120.png",
+                    Price = 0M,
+                    LstOptions = new List<DrinkOptions>
+                    {
+                        new DrinkOptions()
+                        {
+                            Name = "Amstel",
+                            Capacity = 355,
+                            Price = 40M
+                        },
+                        new DrinkOptions()
+                        {
+                            Name = "Cubeta Amstel",
+                            Capacity = 0,
+                            Price = 380M,
+                            Extras = "Cubeta con 10 botellas de 355 ml"
+                        }
+                    }
                 },
                 new Beer()
                 {
                     Name = "Jabali Hellesbock",
                     Description = "",
                     Capacity = 330,
-                    PhotoPath = "",
+                    PhotoPath = "../products/drinks/helles_167x120.png",
                     Price = 60M,
                     IsCraftBeer = true
                 },
@@ -485,7 +725,7 @@
                     Name = "Jabali Bock",
                     Description = "",
                     Capacity = 330,
-                    PhotoPath = "",
+                    PhotoPath = "../products/drinks/bock_167x120.png",
                     Price = 60M,
                     IsCraftBeer = true
                 },
@@ -494,7 +734,7 @@
                     Name = "Jabali Salvajita",
                     Description = "",
                     Capacity = 330,
-                    PhotoPath = "",
+                    PhotoPath = "../products/drinks/salvajita_167x120.png",
                     Price = 60M,
                     IsCraftBeer = true
                 },
@@ -503,7 +743,7 @@
                     Name = "Fortuna Cañita",
                     Description = "",
                     Capacity = 355,
-                    PhotoPath = "",
+                    PhotoPath = "../products/drinks/cañitas_167x120.png",
                     Price = 75M,
                     IsCraftBeer = true
                 },
@@ -512,7 +752,7 @@
                     Name = "Fortuna California",
                     Description = "",
                     Capacity = 355,
-                    PhotoPath = "",
+                    PhotoPath = "../products/drinks/california_167x120.png",
                     Price = 75M,
                     IsCraftBeer = true
                 },
@@ -521,7 +761,7 @@
                     Name = "Fortuna Ippolita",
                     Description = "",
                     Capacity = 355,
-                    PhotoPath = "",
+                    PhotoPath = "../products/drinks/ippolita_167x120.png",
                     Price = 75M,
                     IsCraftBeer = true
                 },
@@ -530,7 +770,7 @@
                     Name = "Fortuna Stout",
                     Description = "",
                     Capacity = 355,
-                    PhotoPath = "",
+                    PhotoPath = "../products/drinks/stout_167x120.png",
                     Price = 75M,
                     IsCraftBeer = true
                 },
@@ -539,12 +779,12 @@
                     Name = "Fortuna Neippolita",
                     Description = "",
                     Capacity = 355,
-                    PhotoPath = "",
+                    PhotoPath = "../products/drinks/neippolita_167x120.png",
                     Price = 75M,
                     IsCraftBeer = true
                 }
             },
-            LstSpirits = new List<Spirit>()
+                LstSpirits = new List<Spirit>()
             {
                 new Spirit()
                 {
@@ -622,7 +862,7 @@
                     }
                 }
             }
-        };
+            };
 
         var counter = 1;
         var isRowCompleted = false;
@@ -694,28 +934,27 @@
         {
             isFlipCard = "flip-card";
             detailsLabel = "Detalles >>";
-        } else
+        }
+        else
         {
             priceInTitle = $"<span class='text-muted'>- Por tan solo <strong>${food.Price}</strong></span>";
         }
 
         strBuilder.Append(
-                    $@"
+                                    $@"
                     <div class='part-{counter} {isFlipCard}'>
                         <div class='flip-card-inner'>
                             <div class='flip-card-front'>
                                 <div class='row'>
                                     <div class='col-5 order-1'>
                                         <img class='img-thumbnail'
-                                    {ItemPhoto(food.PhotoPath)}
-                                        alt='167x120'
-                                        style='width: 167px; height: 120px;'
+                            {ItemPhoto(food.PhotoPath)}
                                         data-holder-rendered='true'>
                                     </div>
                                     <div class='col-7 order-2'>
                                         <h2>{food.Name} <span class='text-muted'>{food.Portion}</span></h2>
                                         <p class='lead'>{food.Description}</p>
-                                    {priceInTitle}
+                            {priceInTitle}
                                     </div>
                                 </div>
                                 <div class='row'>
@@ -728,11 +967,11 @@
                             </div>
                             <div class='flip-card-back'>
                                 <div class='row'>
-                                    <div class='col-8'>
-                                {GetPortionsDetails(food)}
+                                    <div class='col-12' style='margin-bottom:20px;'>
+                        {GetPortionsDetails(food)}
                                     </div>
-                                    <div class='col-4' style='font-size:small;'>
-                                {GetSauceList(food)}
+                                    <div class='col-12' style='font-size:small;'>
+                        {GetSauceListBy3(food)}
                                     </div>
                                 </div>
                             </div>
@@ -771,6 +1010,32 @@
             strBuilder.Append($"<li>{GetEnumDescription(sauce)}{SetSpicyness(LstSauces[sauce.ToString()])}</li>");
         }
         strBuilder.Append("</ul>");
+
+        return strBuilder.ToString();
+    }
+
+    private string GetSauceListBy3(Food food)
+    {
+        if (food.LstSauces == null) return "";
+
+        var strBuilder = new StringBuilder();
+
+        var count = 1;
+        foreach (var sauce in food.LstSauces)
+        {
+            if (count == 4)
+                count = 1;
+
+            if (count == 1)
+                strBuilder.Append("<ul class='list-unstyled' style='float:left; margin-right:25px;'>");
+
+            strBuilder.Append($"<li>{GetEnumDescription(sauce)}{SetSpicyness(LstSauces[sauce.ToString()])}</li>");
+
+            if (count == 3)
+                strBuilder.Append("</ul>");
+
+            count++;
+        }
 
         return strBuilder.ToString();
     }
@@ -832,42 +1097,44 @@
 
         var capacity = drink.Capacity != 0 ? $"({drink.Capacity} ml)" : "";
 
+        var reduceDrinkSpace = drink.DrinkType == "Spirit" ? "" : "reduceDrinkSpace";
+
         strBuilder.Append(
-        $@"
-        <div class='part-{counter} {isFlipCard}'>
-            <div class='flip-card-inner'>
-                <div class='flip-card-front'>
-                    <div class='row'>
-                        <div class='col-5 order-1'>
-                            <img class='img-thumbnail'
-                            {ItemPhoto(drink.PhotoPath)}
-                            alt='167x120'
-                            style='width: 167px; height: 120px;'
-                            data-holder-rendered='true'>
-                        </div>
-                        <div class='col-7 order-2'>
-                            <h2>{drink.Name} <span class='text-muted'>{capacity}</span></h2>
-                        {priceInTitle}
-                        </div>
-                    </div>
-                    <div class='row'>
-                        <div class='col-12'>
-                            <div style='float: right; font-weight: bold;'>
-                                &nbsp;{detailsLabel}
+                        $@"
+                        <div class='part-{counter} {isFlipCard} {reduceDrinkSpace}'>
+                            <div class='flip-card-inner'>
+                                <div class='flip-card-front'>
+                                    <div class='row'>
+                                        <div class='col-5 order-1'>
+                                            <img class='img-thumbnail'
+                                    {ItemPhoto(drink.PhotoPath)}
+                                            data-holder-rendered='true'>
+                                        </div>
+                                        <div class='col-7 order-2'>
+                                            <h2>{drink.Name}
+                                            <br/>
+                                            <span class='text-muted'>{capacity}</span></h2>
+                                    {priceInTitle}
+                                        </div>
+                                    </div>
+                                    <div class='row'>
+                                        <div class='col-12'>
+                                            <div style='float: right; font-weight: bold;'>
+                                                &nbsp;{detailsLabel}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='flip-card-back'>
+                                    <div class='row'>
+                                        <div class='col-12'>
+                                {GetDrinkOptions(drink)}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class='flip-card-back'>
-                    <div class='row'>
-                        <div class='col-12'>
-                        {GetDrinkOptions(drink)}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        ");
+                        ");
     }
 
     private string GetDrinkOptions(Drink drink)
@@ -885,7 +1152,7 @@
             strBuilder.Append($@"
                                 <div style='padding-top:15px;'>{option.Name}{showCapacity} a tan solo <strong>${option.Price}</strong>
                                     <br/>
-                                    {showExtras}
+                    {showExtras}
                                 </div>");
         }
         strBuilder.Append("</div>");
@@ -913,7 +1180,7 @@
         if (!isRowCompleted)
         {
             strBuilder.Append(
-                            $@"<div class='part-2 flip-card' style='border: none;'>
+                                            $@"<div class='part-2 flip-card' style='border: none;'>
                             <div class='row'>
                                 <div class='col-7 order-2'>
                                 </div>
@@ -972,6 +1239,11 @@
 }
 
 <style type="text/css">
+    img {
+        width: 100%;
+        height: auto;
+    }
+
     .box {
         display: flex;
         justify-content: center;
@@ -1002,10 +1274,21 @@
         .part-1, .part-2 {
             min-height: 240px;
         }
+
+            .part-1.reduceDrinkSpace, .part-2.reduceDrinkSpace {
+                min-height: 150px;
+            }
+    }
+
+    @@media screen and (max-width:360px) {
+
+        .part-1, .part-2 {
+            width: 300px;
+        }
     }
 
     .flip-card {
-        background-color: transparent;        
+        background-color: transparent;
         perspective: 1000px;
     }
 
@@ -1049,5 +1332,18 @@
 @((MarkupString)FormattedHtml)
 
 <script type="text/javascript">
+
+    /*
+    window.addEventListener('resize', function (event) {
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+
+        console.log('width');
+        console.log(w);
+
+        console.log('height');
+        console.log(h);
+    }, true);
+    /*
 
 </script>
