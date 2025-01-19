@@ -21,6 +21,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\menu\" />
     <Folder Include="wwwroot\products\drinks\" />
+    <Folder Include="wwwroot\products\food\" />
   </ItemGroup>
 
 </Project>
