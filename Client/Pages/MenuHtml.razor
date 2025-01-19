@@ -13,6 +13,7 @@
         public required List<Food> LstFoods { get; set; }
         public required List<Soda> LstSodas { get; set; }
         public required List<Beer> LstBeers { get; set; }
+        public required List<Other> LstOther { get; set; }
         public required List<Spirit> LstSpirits { get; set; }
     }
 
@@ -52,6 +53,14 @@
         public Soda()
         {
             DrinkType = "Soda";
+        }
+    }
+    
+    public class Other : Drink
+    {
+        public Other()
+        {
+            DrinkType = "Other";
         }
     }
 
@@ -127,15 +136,15 @@
         LstSauces.Add("MangoHabanero", 2);
 
         var menuContent = new MenuContent()
-            {
-                LstFoods = new List<Food>()
+        {
+            LstFoods = new List<Food>()
             {
                 new Food()
                 {
                     Name = "Alitas",
                     Description = "Alitas de pollo acompañadas de verduras y aderezo ranch",
                     Portion = "(350gr/700gr)",
-                    PhotoPath = "",
+                    PhotoPath = "../products/food/alitas.png",
                     Price = 0,
                     LstSauces = new List<SauceEnum>()
                     {
@@ -156,8 +165,8 @@
                         },
                         new FoodOptions()
                         {
-                          PortionGrams = 700,
-                          Price = 179
+                            PortionGrams = 700,
+                            Price = 179
                         }
                     }
                 },
@@ -166,7 +175,7 @@
                     Name = "Boneless",
                     Description = "Bolitas de pollo empanizadas acompañadas de verduras y aderezo ranch",
                     Portion = "(300gr)",
-                    PhotoPath = "",
+                    PhotoPath = "../products/food/boneless.png",
                     Price = 169M,
                     LstSauces = new List<SauceEnum>()
                     {
@@ -182,7 +191,7 @@
                     Name = "Tenders",
                     Description = "Tiras de pollo empanizadas acompañadas de verduras y aderezo ranch",
                     Portion = "(300gr)",
-                    PhotoPath = "",
+                    PhotoPath = "../products/food/tenders.png",
                     Price = 169M,
                     LstSauces = new List<SauceEnum>()
                     {
@@ -198,7 +207,7 @@
                     Name = "Hamburguesa de Pollo",
                     Description = "Hamburguesa de tenders de pollo, pan brichole y verduras",
                     Portion = "",
-                    PhotoPath = "",
+                    PhotoPath = "../products/food/ham_pollo.png",
                     Price = 150M,
                     LstSauces = new List<SauceEnum>()
                     {
@@ -210,7 +219,7 @@
                     Name = "Hamburguesa de Res",
                     Description = "Hamburguesa de arrachera, pan brichole y verduras",
                     Portion = "",
-                    PhotoPath = "",
+                    PhotoPath = "../products/food/ham_res.png",
                     Price = 160M
                 },
                 new Food()
@@ -218,7 +227,7 @@
                     Name = "Dedos de Queso",
                     Description = "Barritas de queso empanizado con catsup como aderezo",
                     Portion = "(x6)",
-                    PhotoPath = "",
+                    PhotoPath = "../products/food/dedos_queso.png",
                     Price = 109M
                 },
                 new Food()
@@ -226,7 +235,7 @@
                     Name = "Papas a la Francesa",
                     Description = "Aderezadas con lemon pepper acompañadas de catsup",
                     Portion = "(300gr)",
-                    PhotoPath = "",
+                    PhotoPath = "../products/food/papas_francesas.png",
                     Price = 75M,
                     LstOptions = new List<FoodOptions>()
                     {
@@ -248,7 +257,7 @@
                     Name = "Tiras de Camote",
                     Description = "Aderezadas con lemon pepper acompañadas de catsup",
                     Portion = "(300gr)",
-                    PhotoPath = "",
+                    PhotoPath = "../products/food/tiras_camote.png",
                     Price = 75M
                 },
                 new Food()
@@ -256,7 +265,7 @@
                     Name = "Papas Gajo",
                     Description = "Acompañadas de catsup",
                     Portion = "(300gr)",
-                    PhotoPath = "",
+                    PhotoPath = "../products/food/papas_gajo.png",
                     Price = 75M,
                     LstOptions = new List<FoodOptions>()
                     {
@@ -271,14 +280,14 @@
                             Price = 100M,
                             Dressing = "con queso"
                         },
-                    }
+                        }
                 },
                 new Food()
                 {
                     Name = "Salchipulpos",
                     Description = "Salchita frita acompañadas de catsup",
                     Portion = "(250gr)",
-                    PhotoPath = "",
+                    PhotoPath = "../products/food/salchipulpos.png",
                     Price = 80M
                 },
                 new Food()
@@ -286,7 +295,7 @@
                     Name = "Salchicha Botanera",
                     Description = "Aderezada con limón, sal y salsas",
                     Portion = "(300gr)",
-                    PhotoPath = "",
+                    PhotoPath = "../products/food/botanera.png",
                     Price = 85M
                 },
                 new Food()
@@ -294,7 +303,7 @@
                     Name = "Aros de Cebolla",
                     Description = "Aros de cebolla frita acompañadas de catsup",
                     Portion = "(150gr)",
-                    PhotoPath = "",
+                    PhotoPath = "../products/food/aros.png",
                     Price = 75M
                 },
                 new Food()
@@ -302,7 +311,7 @@
                     Name = "Carne Seca",
                     Description = "Acompañada de pepino y aderezada con limón y salas",
                     Portion = "(50gr)",
-                    PhotoPath = "",
+                    PhotoPath = "../products/food/carne_seca.png",
                     Price = 120M
                 },
                 new Food()
@@ -310,46 +319,46 @@
                     Name = "Papas Doradas",
                     Description = "Papas doradas aderezadas con limón y salas negras y rojas",
                     Portion = "(100gr)",
-                    PhotoPath = "",
+                    PhotoPath = "../products/food/papas_doradas.png",
                     Price = 55M
                 }
             },
-                LstSodas = new List<Soda>()
+            LstSodas = new List<Soda>()
             {
-              new Soda()
-              {
+                new Soda()
+                {
                 Name = "Coca Cola",
                 Description = "",
                 Capacity = 355,
                 PhotoPath = "../products/drinks/coca_cola_167x120.png",
                 Price = 35M
-              },
-              new Soda()
-              {
+                },
+                new Soda()
+                {
                 Name = "Coca Cola Light",
                 Description = "",
                 Capacity = 355,
                 PhotoPath = "../products/drinks/coca_light_167x120.png",
                 Price = 35M
-              },
-              new Soda()
-              {
+                },
+                new Soda()
+                {
                 Name = "Fanta",
                 Description = "",
                 Capacity = 355,
                 PhotoPath = "../products/drinks/fanta_167x120.png",
                 Price = 35M
-              },
-              new Soda()
-              {
+                },
+                new Soda()
+                {
                 Name = "Fresca",
                 Description = "",
                 Capacity = 355,
                 PhotoPath = "../products/drinks/fresca_167x120.png",
                 Price = 35M
-              }
+                }
             },
-                LstBeers = new List<Beer>()
+            LstBeers = new List<Beer>()
             {
                 new Beer()
                 {
@@ -506,13 +515,13 @@
                     {
                         new DrinkOptions()
                         {
-                            Name = "Bohemia Obscura",
+                            Name = "B Obscura",
                             Capacity = 355,
                             Price = 40
                         },
                         new DrinkOptions()
                         {
-                            Name = "Cubeta Bohemia Obscura",
+                            Name = "Cubeta B Obscura",
                             Capacity = 0,
                             Price = 380,
                             Extras = "Cubeta con 10 botellas de 355 ml"
@@ -675,7 +684,7 @@
                         new DrinkOptions()
                         {
                             Name = "Heineken 0.0",
-                            Capacity = 355,
+                            Capacity = 250,
                             Price = 40M
                         },
                         new DrinkOptions()
@@ -683,7 +692,7 @@
                             Name = "Cubeta Heineken 0.0",
                             Capacity = 0,
                             Price = 380M,
-                            Extras = "Cubeta con 10 botellas de 355 ml"
+                            Extras = "Cubeta con 10 botellas de 250 ml"
                         }
                     }
                 },
@@ -782,9 +791,68 @@
                     PhotoPath = "../products/drinks/neippolita_167x120.png",
                     Price = 75M,
                     IsCraftBeer = true
+                },
+                new Beer()
+                {
+                    Name = "Michelada",
+                    Description = "",
+                    Capacity = 0,
+                    PhotoPath = "../products/drinks/michelada.png",
+                    Price = 75M,
+                    IsCraftBeer = false,
+                    LstOptions = new List<DrinkOptions>
+                    {
+                        new DrinkOptions()
+                        {
+                            Name = "Rusa",
+                            Capacity = 0,
+                            Price = 75M,
+                            Extras = "Cerveza, limón y sal"
+                        },
+                        new DrinkOptions()
+                        {
+                            Name = "Cubana",
+                            Capacity = 0,
+                            Price = 75M,
+                            Extras = "Cerveza, limón, sal, salsas negras y tajín"
+                        },
+                        new DrinkOptions()
+                        {
+                            Name = "Clamato",
+                            Capacity = 0,
+                            Price = 75M,
+                            Extras = "Cerveza, clamato, limón, sal y tajín"
+                        }
+                    }
                 }
             },
-                LstSpirits = new List<Spirit>()
+            LstOther = new List<Other>(){
+                new Other()
+                {
+                    Name = "Limonada",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "../products/drinks/limonada.png",
+                    Price = 35M
+                },
+                new Other()
+                {
+                    Name = "Naranjada",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "../products/drinks/naranjada.png",
+                    Price = 35M
+                },
+                new Other()
+                {
+                    Name = "New Mix",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "../products/drinks/new_mix.png",
+                    Price = 40M
+                },
+            },
+            LstSpirits = new List<Spirit>()
             {
                 new Spirit()
                 {
@@ -862,7 +930,7 @@
                     }
                 }
             }
-            };
+        };
 
         var counter = 1;
         var isRowCompleted = false;
@@ -877,6 +945,8 @@
         DrinksSection("Cerveza Artesanal", ref strBuilder, ref counter, ref isRowCompleted, menuContent.LstBeers.Where(x => x.IsCraftBeer == true).Cast<Drink>().ToList());
 
         DrinksSection("Tequilas y Whiskies", ref strBuilder, ref counter, ref isRowCompleted, menuContent.LstSpirits.Cast<Drink>().ToList());
+        
+        DrinksSection("Otros", ref strBuilder, ref counter, ref isRowCompleted, menuContent.LstOther.Cast<Drink>().ToList());
 
         FormattedHtml = strBuilder.ToString();
     }
@@ -948,13 +1018,13 @@
                                 <div class='row'>
                                     <div class='col-5 order-1'>
                                         <img class='img-thumbnail'
-                                            {ItemPhoto(food.PhotoPath)}
+                                {ItemPhoto(food.PhotoPath)}
                                         data-holder-rendered='true'>
                                     </div>
                                     <div class='col-7 order-2'>
                                         <h2>{food.Name} <span class='text-muted'>{food.Portion}</span></h2>
                                         <p class='lead'>{food.Description}</p>
-                                            {priceInTitle}
+                                {priceInTitle}
                                     </div>
                                 </div>
                                 <div class='row'>
@@ -968,10 +1038,10 @@
                             <div class='flip-card-back'>
                                 <div class='row'>
                                     <div class='foodPortionsSection' style='margin-bottom:20px;'>
-                                        {GetPortionsDetails(food)}
+                            {GetPortionsDetails(food)}
                                     </div>
                                     <div class='foodSauceSection' style='font-size:small;'>
-                                        {GetSauceListBy3(food)}
+                            {GetSauceListBy3(food)}
                                     </div>
                                 </div>
                             </div>
@@ -1083,6 +1153,7 @@
         var isFlipCard = "";
         var detailsLabel = "";
         var priceInTitle = "";
+        var description = "";
 
         if (drink.LstOptions != null &&
             drink.LstOptions.Count >= 1)
@@ -1095,9 +1166,18 @@
             priceInTitle = $"<span class='text-muted'>- Por tan solo <strong>${drink.Price}</strong></span>";
         }
 
+        if(!string.IsNullOrEmpty(drink.Description)){
+
+            description = $@"<br/>
+                             <span class='text-muted'>{drink.Description}</span>";
+        } else {
+
+            description = $@"<br/>";
+        }
+
         var capacity = drink.Capacity != 0 ? $"({drink.Capacity} ml)" : "";
 
-        var reduceDrinkSpace = drink.DrinkType == "Spirit" ? "" : "reduceDrinkSpace";
+        var reduceDrinkSpace = (drink.DrinkType == "Spirit" || drink.Name == "Michelada") ? "" : "reduceDrinkSpace";
 
         strBuilder.Append(
                         $@"
@@ -1113,9 +1193,9 @@
                                         </div>
                                         <div class='col-7 order-2'>
                                             <h2>{drink.Name}
-                                            <br/>
+                                            {description}
                                             <span class='text-muted'>{capacity}</span></h2>
-                                                {priceInTitle}
+                                            {priceInTitle}
                                         </div>
                                     </div>
                                     <div class='row'>
