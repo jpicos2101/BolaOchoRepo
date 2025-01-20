@@ -205,19 +205,15 @@
                 new Food()
                 {
                     Name = "Hamburguesa de Pollo",
-                    Description = "Hamburguesa de tenders de pollo, pan brichole y verduras",
+                    Description = "Pollo empanizado bañado en salsa buffalo con queso amarillo, jitomate, cebolla y lechuga, aderezado con ranch y acompañado de papas a la francesa",
                     Portion = "",
                     PhotoPath = "../products/food/ham_pollo.png",
-                    Price = 150M,
-                    LstSauces = new List<SauceEnum>()
-                    {
-                        SauceEnum.Buffalo
-                    }
+                    Price = 150M
                 },
                 new Food()
                 {
                     Name = "Hamburguesa de Res",
-                    Description = "Hamburguesa de arrachera, pan brichole y verduras",
+                    Description = "Carne de arrachera con queso manchego, tiras de tocino, lechuga, jitomate y aros de cebolla, acompañado de papas a la francesa",
                     Portion = "",
                     PhotoPath = "../products/food/ham_res.png",
                     Price = 160M
@@ -285,7 +281,7 @@
                 new Food()
                 {
                     Name = "Salchipulpos",
-                    Description = "Salchita frita acompañadas de catsup",
+                    Description = "Salchicha frita acompañadas de catsup",
                     Portion = "(250gr)",
                     PhotoPath = "../products/food/salchipulpos.png",
                     Price = 80M
@@ -1018,13 +1014,13 @@
                                 <div class='row'>
                                     <div class='col-5 order-1'>
                                         <img class='img-thumbnail'
-                                {ItemPhoto(food.PhotoPath)}
+                                        {ItemPhoto(food.PhotoPath)}
                                         data-holder-rendered='true'>
                                     </div>
                                     <div class='col-7 order-2'>
                                         <h2>{food.Name} <span class='text-muted'>{food.Portion}</span></h2>
-                                        <p class='lead'>{food.Description}</p>
-                                {priceInTitle}
+                                        <p class='text-muted'>{food.Description}</p>
+                                        {priceInTitle}
                                     </div>
                                 </div>
                                 <div class='row'>
@@ -1038,10 +1034,10 @@
                             <div class='flip-card-back'>
                                 <div class='row'>
                                     <div class='foodPortionsSection' style='margin-bottom:20px;'>
-                            {GetPortionsDetails(food)}
+                                    {GetPortionsDetails(food)}
                                     </div>
                                     <div class='foodSauceSection' style='font-size:small;'>
-                            {GetSauceListBy3(food)}
+                                    {GetSauceListBy3(food)}
                                     </div>
                                 </div>
                             </div>
