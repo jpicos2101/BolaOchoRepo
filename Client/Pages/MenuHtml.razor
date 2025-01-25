@@ -55,7 +55,7 @@
             DrinkType = "Soda";
         }
     }
-    
+
     public class Other : Drink
     {
         public Other()
@@ -136,8 +136,8 @@
         LstSauces.Add("MangoHabanero", 2);
 
         var menuContent = new MenuContent()
-        {
-            LstFoods = new List<Food>()
+            {
+                LstFoods = new List<Food>()
             {
                 new Food()
                 {
@@ -180,10 +180,20 @@
                     LstSauces = new List<SauceEnum>()
                     {
                         SauceEnum.Bbq,
+                        SauceEnum.SmokyBbq,
+                        SauceEnum.LemonPepper,
+                        SauceEnum.Parmesano,
                         SauceEnum.HotBbq,
                         SauceEnum.Buffalo,
                         SauceEnum.TamarindoHabanero,
                         SauceEnum.MangoHabanero
+                    },
+                    LstOptions = new List<FoodOptions>(){
+                        new FoodOptions()
+                        {
+                            PortionGrams = 300,
+                            Price = 169M
+                        }
                     }
                 },
                 new Food()
@@ -196,10 +206,20 @@
                     LstSauces = new List<SauceEnum>()
                     {
                         SauceEnum.Bbq,
+                        SauceEnum.SmokyBbq,
+                        SauceEnum.LemonPepper,
+                        SauceEnum.Parmesano,
                         SauceEnum.HotBbq,
                         SauceEnum.Buffalo,
                         SauceEnum.TamarindoHabanero,
                         SauceEnum.MangoHabanero
+                    },
+                    LstOptions = new List<FoodOptions>(){
+                        new FoodOptions()
+                        {
+                            PortionGrams = 300,
+                            Price = 169M
+                        }
                     }
                 },
                 new Food()
@@ -319,66 +339,58 @@
                     Price = 55M
                 }
             },
-            LstSodas = new List<Soda>()
+                LstSodas = new List<Soda>()
             {
                 new Soda()
                 {
-                Name = "Coca Cola",
-                Description = "",
-                Capacity = 355,
-                PhotoPath = "../products/drinks/coca_cola_167x120.png",
-                Price = 29M
+                    Name = "Coca Cola",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "../products/drinks/coca_cola_167x120.png",
+                    Price = 29M
                 },
                 new Soda()
                 {
-                Name = "Coca Cola Light",
-                Description = "",
-                Capacity = 355,
-                PhotoPath = "../products/drinks/coca_light_167x120.png",
-                Price = 29M
+                    Name = "Coca Cola Light",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "../products/drinks/coca_light_167x120.png",
+                    Price = 29M
                 },
                 new Soda()
                 {
-                Name = "Fanta",
-                Description = "",
-                Capacity = 355,
-                PhotoPath = "../products/drinks/fanta_167x120.png",
-                Price = 29M
+                    Name = "Fanta",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "../products/drinks/fanta_167x120.png",
+                    Price = 29M
                 },
                 new Soda()
                 {
-                Name = "Fresca",
-                Description = "",
-                Capacity = 355,
-                PhotoPath = "../products/drinks/fresca_167x120.png",
-                Price = 29M
+                    Name = "Fresca",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "../products/drinks/fresca_167x120.png",
+                    Price = 29M
                 },
                 new Soda()
                 {
-                Name = "Sprite",
-                Description = "",
-                Capacity = 355,
-                PhotoPath = "../products/drinks/sprite_167x120.png",
-                Price = 29M
+                    Name = "Sprite",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "../products/drinks/sprite_167x120.png",
+                    Price = 29M
                 },
                 new Soda()
                 {
-                Name = "Manzanita",
-                Description = "",
-                Capacity = 355,
-                PhotoPath = "../products/drinks/manzanita_167x120.png",
-                Price = 29M
-                },
-                new Soda()
-                {
-                Name = "Agua Embotellada",
-                Description = "",
-                Capacity = 500,
-                PhotoPath = "../products/drinks/agua_167x120.png",
-                Price = 29M
+                    Name = "Manzanita",
+                    Description = "",
+                    Capacity = 355,
+                    PhotoPath = "../products/drinks/manzanita_167x120.png",
+                    Price = 29M
                 }
             },
-            LstBeers = new List<Beer>()
+                LstBeers = new List<Beer>()
             {
                 new Beer()
                 {
@@ -846,10 +858,10 @@
                     }
                 }
             },
-            LstOther = new List<Other>(){
+                LstOther = new List<Other>(){
                 new Other()
                 {
-                    Name = "Limonada",
+                    Name = "Limonada Mineral",
                     Description = "",
                     Capacity = 355,
                     PhotoPath = "../products/drinks/limonada.png",
@@ -857,7 +869,7 @@
                 },
                 new Other()
                 {
-                    Name = "Naranjada",
+                    Name = "Naranjada Mineral",
                     Description = "",
                     Capacity = 355,
                     PhotoPath = "../products/drinks/naranjada.png",
@@ -871,8 +883,16 @@
                     PhotoPath = "../products/drinks/new_mix.png",
                     Price = 40M
                 },
+                new Other()
+                {
+                    Name = "Agua Embotellada",
+                    Description = "",
+                    Capacity = 500,
+                    PhotoPath = "../products/drinks/agua_167x120.png",
+                    Price = 29M
+                }
             },
-            LstSpirits = new List<Spirit>()
+                LstSpirits = new List<Spirit>()
             {
                 new Spirit()
                 {
@@ -950,7 +970,7 @@
                     }
                 }
             }
-        };
+            };
 
         var counter = 1;
         var isRowCompleted = false;
@@ -965,7 +985,7 @@
         DrinksSection("Cerveza Artesanal", ref strBuilder, ref counter, ref isRowCompleted, menuContent.LstBeers.Where(x => x.IsCraftBeer == true).Cast<Drink>().ToList());
 
         DrinksSection("Tequilas y Whiskies", ref strBuilder, ref counter, ref isRowCompleted, menuContent.LstSpirits.Cast<Drink>().ToList());
-        
+
         DrinksSection("Otros", ref strBuilder, ref counter, ref isRowCompleted, menuContent.LstOther.Cast<Drink>().ToList());
 
         FormattedHtml = strBuilder.ToString();
@@ -1019,8 +1039,10 @@
         var detailsLabel = "";
         var priceInTitle = "";
 
-        if (food.LstOptions != null &&
-            food.LstOptions.Count >= 1)
+        if (
+            (food.LstOptions != null && food.LstOptions.Any()) ||
+            (food.LstSauces != null && food.LstSauces.Any())
+        )
         {
             isFlipCard = "flip-card";
             detailsLabel = "Detalles >>";
